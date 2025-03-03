@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Activation</title>
+    <style>
+        /* Add any basic styling for the email here */
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center; /* Center all content horizontally */
+        }
+        .greeting {
+            font-weight: bold;
+        }
+        .activation-code {
+            font-family: monospace;
+            font-size: 1.2em;
+            background-color: #eee;
+            padding: 5px;
+            border-radius: 3px;
+        }
+        .activation-link {
+            margin-top: 10px;
+        }
+        a {
+            text-decoration: none;
+            color: #333;
+            padding: 10px 15px;
+            background-color: #ddd;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+<h1>Account Activation</h1>
+<p class="greeting" th:text="'Hello ' + ${username} + ','"></p>
+<p>Thank you for signing up for [Company Name]! We're excited to welcome you to our community.</p>
+<p>To activate your account and start enjoying all the benefits, please use the following activation code:</p>
+<div class="activation-code"><span th:text="${activation_code}"></span></div>
+<div class="activation-link">
+    <a th:href="${confirmationUrl}" target="_blank">Activate your account</a>
+</div>
+<p>If you have any trouble activating your account, please don't hesitate to contact our support team at <a href="mailto:support@[company email]">support@[company email]</a>.</p>
+<p>We look forward to seeing you around!</p>
+<p>Sincerely,</p>
+<p>The [Company Name] Team</p>
+</body>
+</html>

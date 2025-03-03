@@ -1,0 +1,126 @@
+.details{
+    height: 400px;
+    padding-top: 25px;
+    width: 100%;
+    background-color: whitesmoke;
+    border-radius: 15px;
+    display: flex;
+}
+.image{
+    height: 250px;
+    width: 250px;
+    margin-top: 40px;
+    margin-left: 75px;
+}
+.title{
+    font-size: 26px;
+    color:  #82bff8;;
+    margin-left: 75px;
+    margin-bottom: 15px;
+}
+.userdetails{
+    height: 350px;
+    width: 50%;
+    margin-left: 3%;
+    border-left: 3px solid black;
+    padding-left: 35px;
+}
+img{
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.test{
+    color: gray;
+    font-size: 15px;
+    font-style: italic;
+    margin-top: 25px;
+}
+.name{
+    margin-left: 10px;
+    font-size: 16px;
+    font-weight: bold;
+
+}
+.name1{
+    margin-left: 10px;
+    font-size: 19px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.allApplication{
+    height: auto;
+    width: 100%;
+    margin-top: 25px ;
+}
+.img {
+    margin-left: 25%;
+    height: 125px;
+    width: 125px;
+    margin-top: 35px;
+    border-radius: 60px;
+    border: 1px solid black;
+  }
+.oneStudentContainer {
+ margin-left: 35px;
+ border-radius: 5px;
+ height: 300px;
+ width: 25%; /* Ensure the width allows three items per row */
+ margin-bottom: 20px; /* Space between rows */
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ transition: all 0.3s ease; /* Smooth transition for size and border change */
+}
+.pagination{
+ margin-top: 70px;
+ margin-left:75% ;
+}
+.mytest {
+    font-size: 13px;
+    color: gray;
+    font-style: italic;
+    margin-left: 15px;
+}
+.internshipType {
+    font-size: 14px;
+    margin-left: 5px;
+    margin-top: 10px;
+
+
+}
+
+.containerr {
+ display: flex;
+ flex-wrap: wrap;
+ width: 100%;
+ justify-content: space-around;
+ height: 430px;
+ background-color: whitesmoke;
+ border-radius: 15px;
+ padding-right: 25px;
+}
+.card {
+ background-color: aliceblue;
+margin-top: 50px;
+height: 370px;
+width: 260px;
+border: 2px solid transparent; /* Default border */
+border-radius: 0.5rem;
+box-shadow: 0 0.5rem 1rem -0.25rem aqua;
+white-space: nowrap; /* Ensure text does not wrap */
+transition: transform 0.3s ease; /* Smooth transition */
+margin-bottom: 50px;
+}
+.card.accepted {
+border-color: green;
+}
+.card.refused {
+    border-color: red;
+   }

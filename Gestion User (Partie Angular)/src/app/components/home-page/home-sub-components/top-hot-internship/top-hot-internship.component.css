@@ -1,0 +1,77 @@
+.oneinternship{
+    padding-top: 30px;
+    height: 160px;
+    width: 88%;
+    display: flex;
+    border-bottom: 1px solid black;
+    margin-left: 8%;
+  }
+  .leftleft{
+    height: 120px;
+    width: 65%;
+    cursor: pointer;
+  }
+  .leftright {
+    height: 120px;
+    width: 15%;
+    margin-left: 19%;
+  }
+  .internshipname{
+    margin-left: 10px;
+    letter-spacing: 1px;
+    font-size: 23px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    margin-bottom: 25px;
+  }
+  .internshiptype{
+    font-size: 15px;
+    margin-left: 20px;
+    background-color: #3f51b5;
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 18px;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  .internshipstatus{
+    font-size: 15px;
+    margin-left: 20px;
+    background-color: lightgoldenrodyellow;
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 18px;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  .internshipcompanyname{
+    font-size: 18px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #82bff8;
+    letter-spacing: 2px;
+  
+  }
+  .internshipdate{
+    font-style: italic;
+    font-size: 13px;
+    color: grey;
+  }
+  .btnbtn.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+  .btnbtn  {
+    font-size: 16px;
+    margin-top: 10%;
+    background-color: #82bff8;
+    cursor: pointer;
+    width: 125px;
+    border-radius: 8px;
+  }
+  .btnbtn:hover{
+    transform: scale(1.1);
+  }
+  .btnbtn.closed {
+    pointer-events: none;
+    opacity: 0.5;
+  }

@@ -1,0 +1,162 @@
+.main {
+    display: flex;
+    padding: 0;
+}
+
+.image, .form {
+    height: 100vh;
+    width: 50%;
+    margin: 0;
+    max-height: max-content;
+}
+
+.card {
+    border-radius: 25px;
+    margin-left: 13%;
+    height: 600px;
+    width: 500px;
+    border: 1px solid black;
+}
+
+.myimage {
+    margin: 0px;
+    height: 100%;
+    width: 100%;
+}
+
+.btn_register {
+    margin-left: 60px;
+    height: 55px;
+    width: 360px;
+    padding-left: 10px;
+    border-radius: 35px;
+    border: none;
+    background-color: blue;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    font-weight: bolder;
+    margin-bottom: 15px;
+}
+
+.btn_userimage {
+    height: 200px;
+    width: 175px;
+    margin-left: 35%;
+    border-radius: 50%;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.infodetails {
+    margin-top: 20px;
+    margin-left: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.input_password {
+    background-color: transparent;
+    margin-left: 60px;
+    height: 55px;
+    width: 360px;
+    padding-left: 10px;
+    border-radius: 5px;
+    border: 1px solid rgb(209, 219, 219);
+}
+
+.input_email {
+    background-color: transparent;
+    margin-left: 60px;
+    height: 55px;
+    width: 360px;
+    padding-left: 10px;
+    border-radius: 5px;
+    border: 1px solid rgb(209, 219, 219);
+}
+
+.fname {
+    background-color: transparent;
+    margin-left: 60px;
+    height: 55px;
+    width: 150px;
+    padding-left: 10px;
+    border-radius: 5px;
+    border: 1px solid rgb(209, 219, 219);
+}
+
+.lname {
+    background-color: transparent;
+    margin-left: 50px;
+    height: 55px;
+    width: 150px;
+    padding-left: 10px;
+    border-radius: 5px;
+    border: 1px solid rgb(209, 219, 219);
+}
+
+.info {
+    margin-left: 60px;
+    font-style: normal;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.test {
+    margin-top: 10px;
+    margin-left: 60px;
+    font-style: normal;
+    font-size: 14px;
+}
+
+.error-message {
+    color: #ff3860;
+    font-size: 12px;
+    margin-left: 60px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .error-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 60px;
+  }
+  
+  input.ng-invalid.ng-touched {
+    border-color: #ff3860 !important;
+  }
+  
+  input:focus {
+    outline: none;
+    border-color: #6b99d6;
+    box-shadow: 0 0 3px #6b99d6;
+  }
+
+button:hover {
+    animation: bubble 0.4s ease-out;
+}
+
+@keyframes bubble {
+    0% {
+        transform: scale(1);
+        background: linear-gradient(90deg, #6b99d6, #637e8d);
+    }
+    50% {
+        transform: scale(1.2);
+        background: linear-gradient(90deg, #6b99d6, #637e8d);
+    }
+    100% {
+        transform: scale(1);
+        background: linear-gradient(90deg, #6b99d6, #637e8d);
+    }
+}
+
+.login-link {
+    color: blue;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for color and transform changes */
+}
+
+.login-link:hover {
+    color: darkblue; /* Change color on hover */
+    transform: scale(2); /* Slightly increase the size on hover */
+}

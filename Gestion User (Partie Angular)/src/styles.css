@@ -1,0 +1,12 @@
+body {
+    margin: 0;
+    padding-top: 20px; /* Adjust based on the height of your header */
+    box-sizing: border-box;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+  

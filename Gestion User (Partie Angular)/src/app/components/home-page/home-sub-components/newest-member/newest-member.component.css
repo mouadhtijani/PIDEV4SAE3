@@ -1,0 +1,66 @@
+.fourthcontainer{
+    height: 450px;
+    width: 100%;
+    background-color: #82bff8;
+  }
+  .scroller {
+    height: 350px;
+    /* Adjust as needed */
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    margin-top: 25px;
+  }
+  
+  .scroller__inner {
+    display: flex;
+    align-items: center;
+    animation: scroll 40s linear infinite;
+  }
+  .myApplication {
+    flex: 0 0 auto;
+    margin-left: 150px;
+  }
+  
+.carduser {
+
+    margin-left: 75px;
+    margin-top: 35px;
+    height: 300px;
+    width: 280px;
+    border-radius: 0.5rem;
+    margin-left: 150px;
+    /* Adjust spacing between cards to 150px */
+    white-space: nowrap;
+    /* Ensure text does not wrap */
+    white-space: nowrap;
+    /* Ensure text does not wrap */
+    transition: transform 0.3s ease;
+    /* Smooth transition */
+    text-align: center;
+  
+  }
+  
+  .img {
+    height: 175px;
+    width: 175px;
+    margin-top: 35px;
+    border-radius: 50%;
+    border: 1px solid black;
+  }
+  
+.name {
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    /* Center align the label */
+  }
+  @keyframes scroll {
+    0% {
+      transform: translateX(100%);
+    }
+  
+    100% {
+      transform: translateX(-100%);
+    }
+  }

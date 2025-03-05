@@ -1,0 +1,168 @@
+/* Style général pour le conteneur */
+.supervisor-container {
+  font-family: 'Arial', sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(249, 249, 249, 0.9); /* Fond semi-transparent */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative; /* Pour permettre le positionnement absolu des enfants */
+  z-index: 2; /* Place le contenu au-dessus de l'image */
+}
+
+/* Style pour les titres */
+.supervisor-container h2 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 10px;
+}
+
+/* Style pour les listes d'étudiants */
+.etudiant-list, .supervised-list {
+  margin-bottom: 30px;
+}
+
+/* Style pour chaque étudiant */
+.etudiant-list div, .supervised-list div {
+  background-color: #fff;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Style pour les paragraphes (noms des étudiants) */
+.etudiant-list p, .supervised-list p {
+  margin: 0;
+  font-size: 18px;
+  color: #555;
+}
+
+/* Style pour les boutons */
+.etudiant-list button, .supervised-list button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+/* Style au survol des boutons */
+.etudiant-list button:hover, .supervised-list button:hover {
+  background-color: #0056b3;
+}
+
+/* Style spécifique pour le bouton de retrait */
+.supervised-list button {
+  background-color: #dc3545;
+}
+
+.supervised-list button:hover {
+  background-color: #c82333;
+}
+
+/* Styles pour la section Hero */
+.hero {
+  position: relative;
+  height: 100vh; /* Ajustez la hauteur selon vos besoins */
+  overflow: hidden;
+}
+
+.hero img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1; /* Place l'image en arrière-plan */
+}
+
+.hero .container {
+  position: relative;
+  z-index: 2; /* Place le contenu au-dessus de l'image */
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white; /* Couleur du texte pour qu'il soit lisible sur l'image */
+}
+
+/* Style pour le header */
+header {
+  background-color: #f8f9fa;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav {
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+
+/* Style pour le main */
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Style pour le conteneur des événements */
+.event-container {
+  margin-top: auto;
+  background-color: rgba(249, 249, 249, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+/* Style pour la liste des événements */
+.event-list div {
+  background-color: #fff;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.event-list p {
+  margin: 0;
+  font-size: 18px;
+  color: #555;
+}
+
+.event-list button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.event-list button:hover {
+  background-color: #0056b3;
+}

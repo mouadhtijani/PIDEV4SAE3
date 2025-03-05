@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Internship Platform</title>
+  <meta name="description" content="Find and apply for internships easily.">
+  <meta name="keywords" content="internships, student applications, jobs">
+
+  <!-- Favicons -->
+  <link href="/assets/front/img/favicon.png" rel="icon">
+  <link href="/assets/front/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Montserrat:wght@100;400;700&family=Poppins:wght@100;400;700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/assets/front/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/front/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/assets/front/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/assets/front/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="/assets/front/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="/assets/front/css/main.css" rel="stylesheet">
+
+  <!-- Custom Styles for Transparent Container -->
+  <link href="/assets/front/css/custom.css" rel="stylesheet">
+</head>
+
+<body class="index-page" data-aos-easing="ease-in-out" data-aos-duration="600" data-aos-delay="0">
+
+  <!-- Header -->
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <h1 class="sitename">InternshipPlatform</h1><span>.</span>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html#hero" class="active">Home</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <a class="btn-getstarted" href="index.html#about">Get Started</a>
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section dark-background">
+      <img src="/assets/front/img/hero-bg.jpg" alt="Hero Background" class="img-fluid w-100">
+      
+      <section id="application-form" class="container my-5 p-4 shadow rounded">
+        <h2 class="text-center">Apply for an Internship</h2>
+    
+        <div class="alert alert-info text-center">
+          <strong>Internship ID:</strong> {{ internshipId }}
+        </div>
+    
+        <form #applicationForm="ngForm" (ngSubmit)="submitApplication()">
+          <!-- Student ID -->
+          <div class="mb-3">
+            <label for="studentId" class="form-label">Student ID:</label>
+            <input type="text" id="studentId" class="form-control" [(ngModel)]="studentId" name="studentId" required (blur)="validateStudentId()">
+            <div *ngIf="studentIdInvalid" class="text-danger">ID invalide : lettres et chiffres uniquement.</div>
+          </div>
+        
+          <!-- Submission Date -->
+          <div class="mb-3">
+            <label for="submissionDate" class="form-label">Submission Date:</label>
+            <input type="date" id="submissionDate" class="form-control" [(ngModel)]="submissionDate" name="submissionDate" required (change)="validateDates()">
+            <div *ngIf="submissionDateInvalid" class="text-danger">Cannot be in the past.</div>
+          </div>
+        
+          <!-- Interview Date -->
+          <div class="mb-3">
+            <label for="interviewDate" class="form-label">Interview Date (Optional):</label>
+            <input type="date" id="interviewDate" class="form-control" [(ngModel)]="interviewDate" name="interviewDate" (change)="validateDates()">
+            <div *ngIf="interviewDateInvalid" class="text-danger">Interview date must be after the submission date.</div>
+          </div>
+        
+          <!-- Upload CV -->
+          <div class="mb-3">
+            <label for="cvUpload" class="form-label">Upload CV (PDF only):</label>
+            <input type="file" id="cvUpload" class="form-control" (change)="onFileSelected($event)" accept="application/pdf" required>
+            <div *ngIf="cvInvalid" class="text-danger">Only PDF files are allowed.</div>
+          </div>
+        
+          <!-- Submit Button -->
+          <button type="submit" class="btn btn-primary w-100" [disabled]="isSubmitting || submissionDateInvalid || interviewDateInvalid || cvInvalid">
+            Submit Application
+          </button>
+        </form>
+        
+      </section>
+    </section>
+    
+  </main>
+
+  <!-- Vendor JS Files -->
+  <script src="/assets/front/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/front/vendor/aos/aos.js"></script>
+  <script src="/assets/front/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="/assets/front/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="/assets/front/js/main.js"></script>
+
+</body>
+</html>

@@ -101,27 +101,29 @@ export class EventListComponent implements OnInit {
 
   // Supprime un événement
   // Supprime un événement
-deleteEvent(id: number): void {
-  if (confirm('Voulez-vous vraiment supprimer cet événement ?')) {
-    this.eventService.deleteEvent(id).subscribe({
-      next: () => {
-        // Met à jour la liste des événements après la suppression
-        this.events = this.events.filter(event => event.id !== id);
-        if (this.showStatistics) {
-          this.generateChart(); // Régénère le graphique si les statistiques sont affichées
+  
+
+  // Delete an event by its ID
+  deleteEvent(eventId: number): void {
+    if (confirm('Are you sure you want to delete this event?')) {
+      console.log('Attempting to delete event with ID:', eventId); // Debug log
+      this.eventService.deleteEvent(eventId).subscribe({
+        next: () => {
+          console.log('Event deleted successfully'); // Debug log
+          this.events = this.events.filter(event => event.eventId !== eventId); // Update the UI
+        },
+        error: (err) => {
+          console.error('Error deleting event:', err); // Debug log
         }
-      },
-      error: (error) => {
-        console.error("Erreur lors de la suppression de l'événement :", error);
-        alert('Une erreur est survenue lors de la suppression.');
-      }
-    });
-  }
+      });
+    }
+  
+  
 }
 
   // Met à jour un événement dans la liste
   onEventUpdated(updatedEvent: Event): void {
-    const index = this.events.findIndex(event => event.id === updatedEvent.id);
+    const index = this.events.findIndex(event => event.eventId === updatedEvent.eventId);
     if (index !== -1) {
       this.events[index] = updatedEvent;
       if (this.showStatistics) {

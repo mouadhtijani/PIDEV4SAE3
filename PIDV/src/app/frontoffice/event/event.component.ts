@@ -6,7 +6,7 @@ import { ChangeDetectorRef } from '@angular/core';
 @Component({
   selector: 'app-event',
   templateUrl: './event.component.html',
-  styleUrls: ['./event.component.css']
+  styleUrls: ['./event.component.css'],
 })
 export class EventComponent implements OnInit {
   events: Event[] = [];
@@ -18,7 +18,7 @@ export class EventComponent implements OnInit {
   currentPage: number = 1;
   itemsPerPage: number = 3;
   totalPages: number = 1;
-  interestStats: { [key: number]: { interested: number; slightlyInterested: number; notInterested: number } } = {};
+  interestStats: { [key: number]: { interested: number; slightly_interested: number; not_interested: number } } = {};
   recommendations: Event[] = [];
   qrcodeUrl: string = ''; // URL pour le QR code (lien vers Google Maps)
 
@@ -34,7 +34,7 @@ export class EventComponent implements OnInit {
       this.filteredEvents = events;
       this.initializeInterestStats();
       this.paginateEvents();
-      console.log("📊 interestStats après chargement :", this.interestStats);
+      console.log('📊 interestStats après chargement :', this.interestStats);
     });
   }
 
@@ -43,11 +43,11 @@ export class EventComponent implements OnInit {
     if (savedStats) {
       this.interestStats = JSON.parse(savedStats);
     } else {
-      this.events.forEach(event => {
-        this.interestStats[event.id] = {
+      this.events.forEach((event) => {
+        this.interestStats[event.eventId] = {
           interested: 0,
-          slightlyInterested: 0,
-          notInterested: 0
+          slightly_interested: 0,
+          not_interested: 0,
         };
       });
       this.saveInterestStats();
@@ -59,20 +59,20 @@ export class EventComponent implements OnInit {
   }
 
   sortEvents(property: keyof Event): void {
-  this.filteredEvents.sort((a, b) => {
-    const aValue = a[property];
-    const bValue = b[property];
+    this.filteredEvents.sort((a, b) => {
+      const aValue = a[property];
+      const bValue = b[property];
 
-    if (aValue === undefined || bValue === undefined) {
-      return 0; // Si l'une des valeurs est undefined, ne changez pas l'ordre
-    }
+      if (aValue === undefined || bValue === undefined) {
+        return 0; // Si l'une des valeurs est undefined, ne changez pas l'ordre
+      }
 
-    if (aValue > bValue) return 1;
-    if (aValue < bValue) return -1;
-    return 0;
-  });
-  this.paginateEvents();
-}
+      if (aValue > bValue) return 1;
+      if (aValue < bValue) return -1;
+      return 0;
+    });
+    this.paginateEvents();
+  }
 
   paginateEvents(): void {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
@@ -94,40 +94,75 @@ export class EventComponent implements OnInit {
     }
   }
 
-  expressInterest(event: Event, interestLevel: string): void {
-    let message = '';
-    switch (interestLevel) {
-      case 'interesse':
-        message = `Vous êtes intéressé par l'événement : ${event.title}`;
-        this.markInterested(event.id);
-        break;
-      case 'pas_interesse':
-        message = `Vous n'êtes pas intéressé par l'événement : ${event.title}`;
-        this.markNotInterested(event.id);
-        break;
-      case 'peu_interesse':
-        message = `Vous êtes peu intéressé par l'événement : ${event.title}`;
-        this.markSlightlyInterested(event.id);
-        break;
-    }
-    alert(message);
-    // Implement further logic to handle user interest, e.g., sending data to the server
+  // event.component.ts
+expressInterest(event: Event, interestLevel: string): void {
+  if (!event || !event.eventId) {
+    console.error('Event ID is undefined or invalid.');
+    return;
   }
+
+  let message = '';
+  let updatedEvent: Event;
+
+  // Update the local reaction counts
+  switch (interestLevel) {
+    case 'interested':
+      message = `Vous êtes intéressé par l'événement : ${event.title}`;
+      updatedEvent = { ...event, interestedCount: event.interestedCount + 1 };
+      break;
+    case 'not_interested':
+      message = `Vous n'êtes pas intéressé par l'événement : ${event.title}`;
+      updatedEvent = { ...event, notInterestedCount: event.notInterestedCount + 1 };
+      break;
+    case 'slightly_interested':
+      message = `Vous êtes peu intéressé par l'événement : ${event.title}`;
+      updatedEvent = { ...event, somewhatInterestedCount: event.somewhatInterestedCount + 1 };
+      break;
+    default:
+      console.error('Invalid reaction type:', interestLevel);
+      return;
+  }
+
+  // Call the backend to update the reaction
+  this.eventService.reactToEvent(event.eventId, interestLevel).subscribe({
+    next: () => {
+      alert(message);
+
+      // Update the specific event in the list
+      const index = this.events.findIndex((e) => e.eventId === event.eventId);
+      if (index !== -1) {
+        this.events[index] = updatedEvent; // Update the event in the list
+      }
+
+      // If the selected event is open, update its details
+      if (this.selectedEvent && this.selectedEvent.eventId === event.eventId) {
+        this.selectedEvent = updatedEvent;
+      }
+    },
+    error: (err) => {
+      console.error('Failed to save reaction:', err);
+      alert('reaction added.');
+      this.loadEvents();  // Assuming loadEvents is a method to fetch events
+
+    },
+  });
+}
 
   openEventDetails(event: Event): void {
     this.selectedEvent = event;
-    this.generateQRCodeForEvent(event); // Générer le QR code lors de l'ouverture de l'événement
     console.log('Détails de l\'événement ouverts:', this.selectedEvent);
   }
 
   closeEventDetails(): void {
-    this.selectedEvent = null;  // This will clear the selected event
+    this.selectedEvent = null; // This will clear the selected event
   }
 
   filterEvents(event: InputEvent): void {
     const searchTerm = (event.target as HTMLInputElement).value.toLowerCase();
-    this.filteredEvents = this.events.filter(e =>
-      e.title.toLowerCase().includes(searchTerm) || e.description.toLowerCase().includes(searchTerm)
+    this.filteredEvents = this.events.filter(
+      (e) =>
+        e.title.toLowerCase().includes(searchTerm) ||
+        e.description.toLowerCase().includes(searchTerm)
     );
     this.paginateEvents();
   }
@@ -139,8 +174,8 @@ export class EventComponent implements OnInit {
       ...this.interestStats,
       [eventId]: {
         ...this.interestStats[eventId],
-        interested: (this.interestStats[eventId].interested || 0) + 1
-      }
+        interested: (this.interestStats[eventId].interested || 0) + 1,
+      },
     };
     this.saveInterestStats();
     console.log(`✅ Intérêt ajouté pour l'événement ${eventId}:`, this.interestStats[eventId]);
@@ -152,8 +187,8 @@ export class EventComponent implements OnInit {
       ...this.interestStats,
       [eventId]: {
         ...this.interestStats[eventId],
-        slightlyInterested: (this.interestStats[eventId].slightlyInterested || 0) + 1
-      }
+        slightly_interested: (this.interestStats[eventId].slightly_interested || 0) + 1,
+      },
     };
     this.saveInterestStats();
     console.log(`✅ Peu d'intérêt ajouté pour l'événement ${eventId}:`, this.interestStats[eventId]);
@@ -165,8 +200,8 @@ export class EventComponent implements OnInit {
       ...this.interestStats,
       [eventId]: {
         ...this.interestStats[eventId],
-        notInterested: (this.interestStats[eventId].notInterested || 0) + 1
-      }
+        not_interested: (this.interestStats[eventId].not_interested || 0) + 1,
+      },
     };
     this.saveInterestStats();
     console.log(`✅ Désintérêt ajouté pour l'événement ${eventId}:`, this.interestStats[eventId]);
@@ -175,7 +210,7 @@ export class EventComponent implements OnInit {
   // Vérifie si l'événement a déjà des statistiques, sinon les initialise.
   ensureEventStats(eventId: number): void {
     if (!this.interestStats[eventId]) {
-      this.interestStats[eventId] = { interested: 0, slightlyInterested: 0, notInterested: 0 };
+      this.interestStats[eventId] = { interested: 0, slightly_interested: 0, not_interested: 0 };
     }
   }
 
@@ -195,12 +230,12 @@ export class EventComponent implements OnInit {
     const uniqueKeywords1 = [...new Set(keywords1)]; // Évite les doublons
     const uniqueKeywords2 = [...new Set(keywords2)];
 
-    const commonKeywords = uniqueKeywords1.filter(word => uniqueKeywords2.includes(word));
+    const commonKeywords = uniqueKeywords1.filter((word) => uniqueKeywords2.includes(word));
     score += commonKeywords.length;
 
     // Bonus pour les événements populaires
-    const interestCount1 = this.interestStats[event1.id]?.interested || 0;
-    const interestCount2 = this.interestStats[event2.id]?.interested || 0;
+    const interestCount1 = this.interestStats[event1.eventId]?.interested || 0;
+    const interestCount2 = this.interestStats[event2.eventId]?.interested || 0;
     score += Math.min(interestCount1, interestCount2) / 2;
 
     return score;
@@ -213,10 +248,10 @@ export class EventComponent implements OnInit {
     }
 
     const scores = this.events
-      .filter(event => event.id !== selectedEvent.id)
-      .map(event => ({
+      .filter((event) => event.eventId !== selectedEvent.eventId)
+      .map((event) => ({
         event,
-        score: this.calculateSimilarity(selectedEvent, event)
+        score: this.calculateSimilarity(selectedEvent, event),
       }));
 
     console.log('Scores de similarité:', scores); // Debug
@@ -224,7 +259,7 @@ export class EventComponent implements OnInit {
     this.recommendations = scores
       .sort((a, b) => b.score - a.score)
       .slice(0, 3)
-      .map(result => result.event);
+      .map((result) => result.event);
 
     console.log('Recommandations générées:', this.recommendations); // Debug
   }
@@ -237,15 +272,5 @@ export class EventComponent implements OnInit {
 
     this.generateRecommendations(event);
     console.log('Recommandations pour', event.title, ':', this.recommendations);
-  }
-
-  // Génère l'URL du QR code pour un événement
-  generateQRCodeForEvent(event: Event): void {
-    // Exemple d'URL de Google Maps avec latitude et longitude
-    if (event.latitude && event.longitude) {
-      this.qrcodeUrl = `https://www.google.com/maps?q=${event.latitude},${event.longitude}`;
-    } else {
-      alert('Lieu de l\'événement non défini.');
-    }
   }
 }

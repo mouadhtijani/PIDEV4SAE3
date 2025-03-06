@@ -57,10 +57,10 @@ export class EventFormComponent {
 
   resetEvent(): Event {
     return {
-      id: 0,
+      eventId: 0, // Default ID for a new event
       title: '',
       description: '',
-      eventType: 'CONFERENCE',
+      eventType: 'CONFERENCE', // Default event type
       category: '',
       status: '',
       startDate: '',
@@ -71,7 +71,10 @@ export class EventFormComponent {
       aiGeneratedAgenda: false,
       chatbotEnabled: false,
       liveStreamingLink: '',
-      gdprCompliant: false
+      gdprCompliant: false,
+      interestedCount: 0, // Initialize to 0
+      notInterestedCount: 0, // Initialize to 0
+      somewhatInterestedCount: 0, // Initialize to 0
     };
   }
 }

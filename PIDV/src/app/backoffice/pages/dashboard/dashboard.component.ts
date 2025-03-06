@@ -33,7 +33,7 @@ export class DashboardComponent implements OnInit {
   }
 
   onEventUpdated(updatedEvent: Event): void {
-    const index = this.events.findIndex(event => event.id === updatedEvent.id);
+    const index = this.events.findIndex(event => event.eventId === updatedEvent.eventId);
     if (index !== -1) {
       this.events[index] = updatedEvent;
     }
@@ -45,6 +45,6 @@ export class DashboardComponent implements OnInit {
   }
 
   onDeleteEvent(eventId: number): void {
-    this.events = this.events.filter(event => event.id !== eventId);
+    this.events = this.events.filter(event => event.eventId !== eventId);
   }
 }

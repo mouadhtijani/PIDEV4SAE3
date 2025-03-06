@@ -2870,11 +2870,34 @@
     max-width: 900px;
     margin: 50px auto;
     padding: 30px;
-    background-color: #fff;
+    background-color: #a41d1d;
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
+/* event.component.css */
+.event-card {
+  background-color: #f9f9f9;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
 
+.reaction-buttons .btn {
+  margin-right: 0.5rem;
+}
+
+.stats p {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
 /* Titres */
 .event-container h3 {
     font-size: 28px;

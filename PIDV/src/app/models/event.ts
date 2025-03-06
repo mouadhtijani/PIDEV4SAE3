@@ -1,5 +1,6 @@
+// models/event.ts
 export class Event {
-  id: number;
+  eventId: number;
   title: string;
   description: string;
   eventType: 'CONFERENCE' | 'WORKSHOP' | 'WEBINAR' | 'HACKATHON' | 'NETWORKING';
@@ -14,12 +15,12 @@ export class Event {
   chatbotEnabled: boolean;
   liveStreamingLink: string;
   gdprCompliant: boolean;
-  latitude?: number; // Ajout de la propriété latitude
-  longitude?: number; // Ajout de la propriété longitude
+  interestedCount: number; // Required property
+  notInterestedCount: number; // Required property
+  somewhatInterestedCount: number; // Required property
 
   constructor() {
-    // Initialisation par défaut (si nécessaire)
-    this.id = 0; // Par exemple, initialiser à 0 si tu veux que ce soit un identifiant vide avant d'être affecté par la base
+    this.eventId = 0;
     this.title = '';
     this.description = '';
     this.eventType = 'CONFERENCE';
@@ -34,7 +35,8 @@ export class Event {
     this.chatbotEnabled = false;
     this.liveStreamingLink = '';
     this.gdprCompliant = false;
-    this.latitude = undefined; // Initialisation par défaut
-    this.longitude = undefined; // Initialisation par défaut
+    this.interestedCount = 0; // Initialize to 0
+    this.notInterestedCount = 0; // Initialize to 0
+    this.somewhatInterestedCount = 0; // Initialize to 0
   }
 }

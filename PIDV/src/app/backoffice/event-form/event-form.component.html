@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>{{ event.id ? 'Modifier l\'événement' : 'Ajouter un nouvel événement' }}</h2>
+  <h2>{{ event.eventId ? 'Modifier l\'événement' : 'Ajouter un nouvel événement' }}</h2>
 
   <form (ngSubmit)="onSubmit()" #eventForm="ngForm" novalidate>
     <div class="form-group">
@@ -201,7 +201,7 @@
     </div>
 
     <button type="submit" class="btn btn-primary" [disabled]="eventForm.invalid">
-      {{ event.id ? 'Mettre à jour' : 'Ajouter' }}
+      {{ event.eventId ? 'Mettre à jour' : 'Ajouter' }}
     </button>
     <button type="button" (click)="resetForm()" class="btn btn-secondary">Réinitialiser</button>
     <!-- Button to navigate to event list page -->

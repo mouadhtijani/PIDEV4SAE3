@@ -31,7 +31,7 @@ export class EventUpdateComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.event.id) {
+    if (this.event.eventId) {
       this.updateEvent(); // Appeler updateEvent si l'événement existe déjà
     } else {
       this.createEvent(); // Appeler createEvent pour un nouvel événement
@@ -61,7 +61,7 @@ export class EventUpdateComponent implements OnInit {
       return;
     }
 
-    this.eventService.updateEvent(this.event.id, this.event).subscribe(
+    this.eventService.updateEvent(this.event.eventId, this.event).subscribe(
       (response) => {
         this.eventUpdated.emit(response);
         alert('Événement mis à jour avec succès!');
@@ -106,10 +106,10 @@ export class EventUpdateComponent implements OnInit {
 
   resetEvent(): Event {
     return {
-      id: 0,
+      eventId: 0, // Default ID for a new event
       title: '',
       description: '',
-      eventType: 'CONFERENCE',
+      eventType: 'CONFERENCE', // Default event type
       category: '',
       status: '',
       startDate: '',
@@ -120,10 +120,12 @@ export class EventUpdateComponent implements OnInit {
       aiGeneratedAgenda: false,
       chatbotEnabled: false,
       liveStreamingLink: '',
-      gdprCompliant: false
+      gdprCompliant: false,
+      interestedCount: 0, // Initialize to 0
+      notInterestedCount: 0, // Initialize to 0
+      somewhatInterestedCount: 0, // Initialize to 0
     };
   }
-
   resetForm() {
     this.event = this.resetEvent();
   }

@@ -1,102 +1,4 @@
-/* Styling for the heading */
-.student-form-heading {
-    text-align: center;
-    font-size: 26px;
-    font-weight: bold;
-    color: white; /* White for contrast */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Subtle shadow effect */
-    margin-bottom: 20px;
-    background: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
-    padding: 10px 15px;
-    border-radius: 8px;
-    display: inline-block;
-}
-
-/* Styling for the student form */
-.student-form {
-    max-width: 500px;
-    margin: 40px auto;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
-    border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px); /* Frosted glass effect */
-}
-
-/* Labels */
-.student-form label {
-    font-weight: 600;
-    color: #fff; /* White text for better contrast */
-    display: block;
-    margin-bottom: 5px;
-}
-
-/* Input fields */
-.student-form input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 6px;
-    font-size: 16px;
-    background: rgba(255, 255, 255, 0.3); /* Transparent input */
-    color: #fff; /* White text */
-    margin-bottom: 15px;
-}
-
-/* Placeholder color */
-.student-form input::placeholder {
-    color: rgba(255, 255, 255, 0.7);
-}
-
-/* Focus effect */
-.student-form input:focus {
-    border-color: #fff;
-    outline: none;
-    box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5);
-}
-
-
-/* Submit Button */
-.student-form button {
-    background: rgba(19, 150, 84, 0.7);
-    color: #fff;
-    font-size: 18px;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    width: 100%;
-    transition: background 0.3s ease-in-out;
-}
-
-/* Hover effect for button */
-.student-form button:hover {
-    background: rgba(0, 123, 255, 0.9);
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .student-form {
-        max-width: 90%;
-        padding: 15px;
-    }
-}
-
-
-/* Hover effect for button */
-.student-form button:hover {
-    background: #0056b3;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .student-form {
-        max-width: 90%;
-        padding: 15px;
-    }
-}
-
-  /**
+/**
 * Template Name: Append
 * Template URL: https://bootstrapmade.com/append-bootstrap-website-template/
 * Updated: Aug 07 2024 with Bootstrap v5.3.3
@@ -2962,3 +2864,11 @@
     color: color-mix(in srgb, var(--default-color), transparent 60%);
     font-size: 14px;
   }
+  .chat-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #000307;
+    margin-bottom: 10px;
+  }
+  

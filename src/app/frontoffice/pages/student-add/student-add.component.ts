@@ -24,14 +24,18 @@ export class StudentAddComponent {
 
   addStudent() {
     if (this.studentForm.valid) {
-      this.studentService.addStudent(this.studentForm.value).subscribe(() => {
-        alert('Étudiant ajouté avec succès !');
-        this.studentForm.reset();
-      }, (error) => {
-        console.error('Erreur lors de l\'ajout de l\'étudiant', error);
-      });
+      this.studentService.addStudent(this.studentForm.value).subscribe(
+        () => {
+          alert('Étudiant ajouté avec succès !'); // Success alert
+          this.studentForm.reset(); // Reset the form
+        },
+        (error) => {
+          console.error('Erreur lors de l\'ajout de l\'étudiant', error); // Log the error
+          alert('Erreur lors de l\'ajout de l\'étudiant. Veuillez réessayer.'); // Error alert
+        }
+      );
     } else {
-      alert('Veuillez corriger les erreurs dans le formulaire.');
+      alert('Veuillez corriger les erreurs dans le formulaire.'); // Form validation alert
     }
   }
-}
+}   

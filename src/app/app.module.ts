@@ -18,6 +18,7 @@ import { ApplicationStatusComponent } from './application-status/application-sta
 import { StudentResponseComponent } from './student-response/student-response.component';
 import { AddFeedbackComponent } from './add-feedback/add-feedback.component';
 import { ShowFeedbacksComponent } from './show-feedbacks/show-feedbacks.component';
+import { ChatbotComponent } from './chatbot/chatbot.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { ShowFeedbacksComponent } from './show-feedbacks/show-feedbacks.componen
     ApplicationStatusComponent,
     StudentResponseComponent,
     AddFeedbackComponent,
-    ShowFeedbacksComponent
+    ShowFeedbacksComponent,
+    ChatbotComponent
   ],
   imports: [
     BrowserModule,

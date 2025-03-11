@@ -40,7 +40,7 @@
         <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
           <!-- Uncomment the line below if you also wish to use an image logo -->
           <!-- <img src="//assets/front/img/logo.png" alt=""> -->
-          <h1 class="sitename">Append</h1><span>.</span>
+          <h1 class="sitename">InternshipPlatform</h1><span>.</span>
         </a>
   
         <nav id="navmenu" class="navmenu">
@@ -49,8 +49,8 @@
             <li><a href="index.html#about">About</a></li>
             <li><a href="index.html#services">Services</a></li>
             <li><a href="index.html#portfolio">Portfolio</a></li>
-            <li><a href="index.html#pricing">Pricing</a></li>
-            <li><a href="index.html#team">Team</a></li>
+            <li><a routerLink="/chatbot">ChatBot</a></li>
+            <li><a routerLink="/student-response">Reclamation</a></li>
             <li><a href="blog.html">Blog</a></li>
             <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
               <ul>
@@ -126,7 +126,7 @@
   </div>
 
   <!-- Submit Button -->
-  <button class="btn btn-primary" (click)="submitFeedback()" [disabled]="commentInput.invalid">Submit Feedback</button>
+  <button class="btn btn-primary" (click)="submitFeedback()" >Submit Feedback</button>
 </div>
 
 </main>

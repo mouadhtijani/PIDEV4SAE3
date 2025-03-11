@@ -11,6 +11,7 @@ import { ApplicationStatusComponent } from './application-status/application-sta
 import { StudentResponseComponent } from './student-response/student-response.component';
 import { AddFeedbackComponent } from './add-feedback/add-feedback.component';
 import { ShowFeedbacksComponent } from './show-feedbacks/show-feedbacks.component';
+import { ChatbotComponent } from './chatbot/chatbot.component';
 
 const routes: Routes = [
   { path: 'front', component: LandingpageComponent }, // Home page
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'student-response', component: StudentResponseComponent },
   { path: 'add-feedback/:id', component: AddFeedbackComponent },
   { path: 'show-feedbacks/:id', component: ShowFeedbacksComponent },
+  { path: 'chatbot', component: ChatbotComponent },
 
   
   { path: '**', redirectTo: '' } // Redirect to Home if route not found

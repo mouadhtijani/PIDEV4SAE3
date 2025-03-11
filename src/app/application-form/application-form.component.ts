@@ -62,25 +62,37 @@ export class ApplicationFormComponent implements OnInit {
   }
 
   submitApplication() {
-    if (this.studentIdInvalid || this.submissionDateInvalid || this.interviewDateInvalid || !this.cvFile) {
+    // Vérification des champs vides
+    if (!this.studentId || !this.internshipId || !this.submissionDate || !this.cvFile) {
+      alert("Veuillez remplir tous les champs obligatoires avant de soumettre.");
       return;
     }
-
+  
+    // Vérifier si les validations sont OK
+    if (this.studentIdInvalid || this.submissionDateInvalid || this.interviewDateInvalid || this.cvInvalid) {
+      alert("Veuillez corriger les erreurs dans le formulaire avant de soumettre.");
+      return;
+    }
+  
     this.isSubmitting = true;
-
+  
     this.applicationService.submitApplication(
       this.studentId,
       this.internshipId!,
       this.submissionDate,
       this.interviewDate,
       this.cvFile
-    ).subscribe(response => {
-      alert('Candidature envoyée avec succès !');
-      this.isSubmitting = false;
-      this.router.navigate(['/internships']);
-    }, error => {
-      alert('Erreur lors de l\'envoi.');
-      this.isSubmitting = false;
-    });
+    ).subscribe(
+      response => {
+        alert('Candidature envoyée avec succès !');
+        this.isSubmitting = false;
+        this.router.navigate(['/internships']);
+      },
+      error => {
+        alert("Erreur lors de l'envoi. Veuillez réessayer.");
+        this.isSubmitting = false;
+      }
+    );
   }
+  
 }

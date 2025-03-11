@@ -26,8 +26,71 @@
   <!-- Main CSS File -->
   <link href="/assets/front/css/main.css" rel="stylesheet">
 
-  <!-- Custom Styles for Transparent Container -->
+  <!-- Custom Styles for Chatbot -->
   <link href="/assets/front/css/custom.css" rel="stylesheet">
+  <style>
+.chat-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: rgba(255, 255, 255, 0.5); /* Reduced opacity */
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Softer shadow */
+  padding: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(10px); /* Blurred effect for better visibility */
+}
+
+.chat-box {
+  flex: 1;
+  max-height: 500px;
+  overflow-y: auto;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.4); /* Slight background for readability */
+  border-radius: 5px;
+}
+
+.chat-input {
+  display: flex;
+  margin-top: 10px;
+  background: rgba(255, 255, 255, 0.4); /* Slight transparency */
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.6); /* Semi-transparent input */
+}
+.user-question {
+      color: #0c0000;
+    }
+    .bot-answer {
+      color: #2b0bb6;
+    }
+.chat-input button {
+  margin-left: 5px;
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.chat-input button:hover {
+  background: #0056b3;
+}
+
+  </style>
 </head>
 
 <body class="index-page" data-aos-easing="ease-in-out" data-aos-duration="600" data-aos-delay="0">
@@ -42,14 +105,14 @@
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="index.html#hero" class="active">Home</a></li>
-          <li><a routerLink="/chatbot">ChatBot</a></li>
-          <li><a href="index.html#services">Services</a></li>
           <li><a href="index.html#about">About</a></li>
           <li><a href="index.html#services">Services</a></li>
+          <li><a routerLink="/chatbot">ChatBot</a></li>
           <li><a href="index.html#pricing">Pricing</a></li>
           <li><a routerLink="/student-response">Reclamation</a></li>
           <li><a href="blog.html">Blog</a></li>
-          <li><a href="index.html#contact">Contact</a></li>
+          <li><a href="contact.html">Contact</a></li>
+
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -59,65 +122,29 @@
   </header>
 
   <main class="main">
-
     <!-- Hero Section -->
     <section id="hero" class="hero section dark-background">
-      <img src="/assets/front/img/hero-bg.jpg" alt="Hero Background" class="img-fluid w-100">
-      
-      <section id="application-form" class="container my-5 p-4 shadow rounded">
-        <h2 class="text-center">Apply for an Internship</h2>
-    
-        <div class="alert alert-info text-center">
-          <strong>Internship ID:</strong> {{ internshipId }}
-        </div>
-    
-        <form #applicationForm="ngForm" (ngSubmit)="submitApplication()">
-       <!-- Student ID -->
-<div class="mb-3">
-  <label for="studentId" class="form-label">Write your ID:</label>
-  <input 
-    type="text" 
-    id="studentId" 
-    class="form-control" 
-    [(ngModel)]="studentId" 
-    name="studentId" 
-    required 
-    (blur)="validateStudentId()" 
-    placeholder="Enter your student ID">
-  <div *ngIf="studentIdInvalid" class="text-danger">ID invalide : lettres et chiffres uniquement.</div>
-</div>
-
-        
-          <!-- Submission Date -->
-          <div class="mb-3">
-            <label for="submissionDate" class="form-label">Submission Date:</label>
-            <input type="date" id="submissionDate" class="form-control" [(ngModel)]="submissionDate" name="submissionDate" required (change)="validateDates()">
-            <div *ngIf="submissionDateInvalid" class="text-danger">Cannot be in the past.</div>
-          </div>
-        
-          <!-- Interview Date -->
-          <div class="mb-3">
-            <label for="interviewDate" class="form-label">Interview Date (Optional):</label>
-            <input type="date" id="interviewDate" class="form-control" [(ngModel)]="interviewDate" name="interviewDate" (change)="validateDates()">
-            <div *ngIf="interviewDateInvalid" class="text-danger">Interview date must be after the submission date.</div>
-          </div>
-        
-          <!-- Upload CV -->
-          <div class="mb-3">
-            <label for="cvUpload" class="form-label">Upload CV (PDF only):</label>
-            <input type="file" id="cvUpload" class="form-control" (change)="onFileSelected($event)" accept="application/pdf" required>
-            <div *ngIf="cvInvalid" class="text-danger">Only PDF files are allowed.</div>
-          </div>
-        
-          <!-- Submit Button -->
-          <button type="submit" class="btn btn-primary w-100" [disabled]="isSubmitting || submissionDateInvalid || interviewDateInvalid || cvInvalid">
-            Submit Application
-          </button>
-        </form>
-        
-      </section>
+        <img src="/assets/images/chatbot.png" alt="" data-aos="fade-in" class="aos-init aos-animate">
     </section>
-    
+
+   <!-- Chatbot Section -->
+<div class="chat-container">
+    <!-- Title for the Chatbot -->
+    <h2 class="chat-title">Welcome to Our Chatbot!</h2>
+  
+    <div class="chat-box">
+      <div *ngFor="let chat of chatHistory" class="chat-message">
+        <p class="user-question"><strong>You:</strong> {{ chat.question }}</p>
+        <p class="bot-answer"><strong>Bot:</strong> {{ chat.answer }}</p>
+      </div>
+    </div>
+  
+    <div class="chat-input">
+      <input type="text" [(ngModel)]="userQuestion" placeholder="Ask something..." (keyup.enter)="sendMessage()" />
+      <button (click)="sendMessage()">Send</button>
+    </div>
+  </div>
+  
   </main>
 
   <!-- Vendor JS Files -->

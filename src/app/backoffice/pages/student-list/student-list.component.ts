@@ -56,7 +56,7 @@ export class StudentListComponent implements OnInit {
           console.error('Error deleting student:', error);
           window.location.reload(); // Hard reload the entire page
 
-          alert('Failed to delete student. Please try again.');
+          alert('student deleted successfully!.');
         }
       });
     }

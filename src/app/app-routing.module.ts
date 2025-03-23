@@ -12,6 +12,7 @@ import { StudentResponseComponent } from './student-response/student-response.co
 import { AddFeedbackComponent } from './add-feedback/add-feedback.component';
 import { ShowFeedbacksComponent } from './show-feedbacks/show-feedbacks.component';
 import { ChatbotComponent } from './chatbot/chatbot.component';
+import { VideoCallComponent } from './video-call/video-call.component';
 
 const routes: Routes = [
   { path: 'front', component: LandingpageComponent }, // Home page
@@ -26,6 +27,8 @@ const routes: Routes = [
   { path: 'add-feedback/:id', component: AddFeedbackComponent },
   { path: 'show-feedbacks/:id', component: ShowFeedbacksComponent },
   { path: 'chatbot', component: ChatbotComponent },
+  { path: 'video-call', component: VideoCallComponent },
+
 
   
   { path: '**', redirectTo: '' } // Redirect to Home if route not found

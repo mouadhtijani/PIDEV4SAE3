@@ -19,6 +19,7 @@ import { StudentResponseComponent } from './student-response/student-response.co
 import { AddFeedbackComponent } from './add-feedback/add-feedback.component';
 import { ShowFeedbacksComponent } from './show-feedbacks/show-feedbacks.component';
 import { ChatbotComponent } from './chatbot/chatbot.component';
+import { VideoCallComponent } from './video-call/video-call.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { ChatbotComponent } from './chatbot/chatbot.component';
     StudentResponseComponent,
     AddFeedbackComponent,
     ShowFeedbacksComponent,
-    ChatbotComponent
+    ChatbotComponent,
+    VideoCallComponent
   ],
   imports: [
     BrowserModule,

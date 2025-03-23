@@ -26,9 +26,11 @@
     "bootstrap-icons": "^1.11.3",
     "glightbox": "^3.3.1",
     "ngx-bootstrap": "^10.2.0",
+    "peerjs": "^1.5.4",
     "rxjs": "~7.8.0",
     "swiper": "^11.2.4",
     "tslib": "^2.3.0",
+    "webrtc-adapter": "^9.0.1",
     "zone.js": "~0.13.0"
   },
   "devDependencies": {

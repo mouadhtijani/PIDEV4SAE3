@@ -1,8 +1,8 @@
 
+
 spring:
   application:
-    name: feedbacks
-
+    name: videocalls
 
 
   config:

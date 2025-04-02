@@ -12,6 +12,8 @@
         <option value="$PROJECT_DIR$/internship/pom.xml" />
         <option value="$PROJECT_DIR$/application/pom.xml" />
         <option value="$PROJECT_DIR$/feedback/pom.xml" />
+        <option value="$PROJECT_DIR$/chatbot/pom.xml" />
+        <option value="$PROJECT_DIR$/videoCall/pom.xml" />
       </list>
     </option>
   </component>

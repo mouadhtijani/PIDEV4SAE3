@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/PIDEV4.iml" filepath="$PROJECT_DIR$/PIDEV4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/iqtest/iqtest.iml" filepath="$PROJECT_DIR$/iqtest/iqtest.iml" />
     </modules>
   </component>
 </project>

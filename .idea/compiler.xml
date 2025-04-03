@@ -11,7 +11,7 @@
         <module name="gateway" />
         <module name="discovery" />
       </profile>
-      <profile name="Annotation profile for videoCall" enabled="true">
+      <profile name="Annotation profile for iqtest" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -19,6 +19,7 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
         </processorPath>
         <module name="feedback" />
+        <module name="iqtest" />
         <module name="chatbot" />
         <module name="videoCall" />
         <module name="application" />
@@ -44,6 +45,7 @@
       <module name="feedback-service" options="-parameters" />
       <module name="gateway" options="-parameters" />
       <module name="internship" options="-parameters" />
+      <module name="iqtest" options="-parameters" />
       <module name="student" options="-parameters" />
       <module name="student (1)" options="-parameters" />
       <module name="student (2)" options="-parameters" />

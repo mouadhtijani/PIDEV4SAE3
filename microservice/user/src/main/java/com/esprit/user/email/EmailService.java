@@ -1,0 +1,102 @@
+package com.esprit.user.email;
+
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Service;
+import org.thymeleaf.context.Context;
+import org.thymeleaf.spring6.SpringTemplateEngine;
+
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
+import static org.springframework.mail.javamail.MimeMessageHelper.MULTIPART_MODE_MIXED;
+
+@Service
+public class EmailService {
+
+    private final JavaMailSender mailSender;
+    private final SpringTemplateEngine templateEngine;
+
+    // ✅ Fix: Explicit Constructor-Based Dependency Injection
+    @Autowired
+    public EmailService(JavaMailSender mailSender, SpringTemplateEngine templateEngine) {
+        this.mailSender = mailSender;
+        this.templateEngine = templateEngine;
+    }
+
+    @Async
+    public void sendEmail(String to, String username, EmailTemplateName emailTemplateName, String confirmationUrl, String activationCode, String subject)
+            throws MessagingException {
+        String templateName = (emailTemplateName == null) ? "confirm-email" : emailTemplateName.getName();
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, MULTIPART_MODE_MIXED, UTF_8.name());
+
+        Map<String, Object> properties = new HashMap<>();
+        properties.put("username", username);
+        properties.put("confirmationUrl", confirmationUrl);
+        properties.put("activation_code", activationCode);
+
+        Context context = new Context();
+        context.setVariables(properties);
+
+        helper.setFrom("ounissiroua1@gmail.com");
+        helper.setTo(to);
+        helper.setSubject(subject);
+
+        String template = templateEngine.process(templateName, context);
+        helper.setText(template, true);
+        mailSender.send(mimeMessage);
+    }
+
+    @Async
+    public void sendCompanyCodeEmail(String to, String username, EmailTemplateName emailTemplateName, String activationCode, String subject)
+            throws MessagingException {
+        String templateName = (emailTemplateName == null) ? "confirm-email" : emailTemplateName.getName();
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, MULTIPART_MODE_MIXED, UTF_8.name());
+
+        Map<String, Object> properties = new HashMap<>();
+        properties.put("username", username);
+        properties.put("company_code", activationCode);
+
+        Context context = new Context();
+        context.setVariables(properties);
+
+        helper.setFrom("ounissiroua1@gmail.com");
+        helper.setTo(to);
+        helper.setSubject(subject);
+
+        String template = templateEngine.process(templateName, context);
+        helper.setText(template, true);
+        mailSender.send(mimeMessage);
+    }
+
+    @Async
+    public void sendApplicationConfirmationEmail(String to, String username, EmailTemplateName emailTemplateName, String subject)
+            throws MessagingException {
+        String templateName = emailTemplateName.getName();
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, MULTIPART_MODE_MIXED, UTF_8.name());
+
+        Map<String, Object> properties = new HashMap<>();
+        properties.put("username", username);
+        properties.put("ConfirmationDate", LocalDateTime.now());
+
+        Context context = new Context();
+        context.setVariables(properties);
+
+        helper.setFrom("ounissiroua1@gmail.com");
+        helper.setTo(to);
+        helper.setSubject(subject);
+
+        String template = templateEngine.process(templateName, context);
+        helper.setText(template, true);
+        mailSender.send(mimeMessage);
+    }
+}

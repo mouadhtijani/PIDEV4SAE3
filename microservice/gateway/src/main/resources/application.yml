@@ -1,0 +1,22 @@
+eureka:
+  client:
+    register-with-eureka: false  # Si tu ne veux pas enregistrer le gateway dans Eureka
+
+
+server:
+  port: 8222  # Port du gateway
+
+
+spring:
+  application:
+    name: gateway
+
+
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true  # Active la découverte dynamique des services via Eureka
+
+  config:
+    import: optional:configserver:http://localhost:8888

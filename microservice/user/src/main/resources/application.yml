@@ -1,0 +1,65 @@
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}  # Uses environment variable if available
+
+server:
+  port: 8081
+
+spring:
+  application:
+    name: userss
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/userss?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
+    username: root
+    password: ""  # Use an environment variable for security
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+
+  config:
+    import: optional:configserver:http://localhost:8888
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${EMAIL_USERNAME:ounissiroua1@gmail.com}  # Secure with env variable
+    password: ${EMAIL_PASSWORD:jwka qlwc pfbt zeab}  # Secure with env variable
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
+
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+
+  # Configure multipart file uploads
+  servlet:
+    multipart:
+      enabled: true  # Enable multipart (file uploads)
+      max-file-size: 10MB  # Max file size
+      max-request-size: 10MB  # Max request size
+
+# Swagger UI path configuration
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+logging:
+  level:
+    org.springframework.web: DEBUG
+    org.hibernate.SQL: DEBUG

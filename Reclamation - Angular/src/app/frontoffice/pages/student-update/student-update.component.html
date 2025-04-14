@@ -1,0 +1,133 @@
+<div class="page-background">
+
+  <div class="form-container">
+    <h2>Update Student</h2>
+    <form (ngSubmit)="updateStudent()" #studentForm="ngForm">
+      
+      <!-- Name Field -->
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input 
+          type="text" 
+          id="name" 
+          [(ngModel)]="student.name" 
+          name="name" 
+          required 
+          minlength="3" 
+          maxlength="100" 
+          #name="ngModel" />
+        <div *ngIf="name.invalid && name.touched" class="error-message">
+          <small *ngIf="name.errors?.['required']">Name is required.</small>
+          <small *ngIf="name.errors?.['minlength']">Name must be at least 3 characters long.</small>
+          <small *ngIf="name.errors?.['maxlength']">Name cannot be more than 100 characters.</small>
+        </div>
+      </div>
+  
+      <!-- Major Field -->
+      <div class="form-group">
+        <label for="major">Major</label>
+        <input 
+          type="text" 
+          id="major" 
+          [(ngModel)]="student.major" 
+          name="major" 
+          required 
+          #major="ngModel" />
+        <div *ngIf="major.invalid && major.touched" class="error-message">
+          <small *ngIf="major.errors?.['required']">Major is required.</small>
+        </div>
+      </div>
+  
+      <!-- CV Field -->
+      <div class="form-group">
+        <label for="cv">CV</label>
+        <input 
+          type="text" 
+          id="cv" 
+          [(ngModel)]="student.cv" 
+          name="cv" 
+          required 
+          #cv="ngModel" />
+        <div *ngIf="cv.invalid && cv.touched" class="error-message">
+          <small *ngIf="cv.errors?.['required']">CV is required.</small>
+        </div>
+      </div>
+  
+      <!-- Phone Number Field -->
+      <div class="form-group">
+        <label for="phoneNumber">Phone</label>
+        <input 
+          type="text" 
+          id="phoneNumber" 
+          [(ngModel)]="student.phoneNumber" 
+          name="phoneNumber" 
+          required 
+          pattern="^\d{10}$" 
+          #phoneNumber="ngModel" />
+        <div *ngIf="phoneNumber.invalid && phoneNumber.touched" class="error-message">
+          <small *ngIf="phoneNumber.errors?.['required']">Phone number is required.</small>
+          <small *ngIf="phoneNumber.errors?.['pattern']">Phone number must be 10 digits.</small>
+        </div>
+      </div>
+  
+      <!-- Email Field -->
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input 
+          type="email" 
+          id="email" 
+          [(ngModel)]="student.email" 
+          name="email" 
+          required 
+          email 
+          #email="ngModel" />
+        <div *ngIf="email.invalid && email.touched" class="error-message">
+          <small *ngIf="email.errors?.['required']">Email is required.</small>
+          <small *ngIf="email.errors?.['email']">Please enter a valid email.</small>
+        </div>
+      </div>
+  
+      <!-- Age Field -->
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input 
+          type="number" 
+          id="age" 
+          [(ngModel)]="student.age" 
+          name="age" 
+          required 
+          min="18" 
+          max="100" 
+          #age="ngModel" />
+        <div *ngIf="age.invalid && age.touched" class="error-message">
+          <small *ngIf="age.errors?.['required']">Age is required.</small>
+          <small *ngIf="age.errors?.['min']">Age must be at least 18.</small>
+          <small *ngIf="age.errors?.['max']">Age cannot be more than 100.</small>
+        </div>
+      </div>
+  
+      <!-- GPA Field -->
+      <div class="form-group">
+        <label for="gpa">GPA</label>
+        <input 
+          type="number" 
+          id="gpa" 
+          step="0.01" 
+          [(ngModel)]="student.gpa" 
+          name="gpa" 
+          required 
+          min="0" 
+          max="4" 
+          #gpa="ngModel" />
+        <div *ngIf="gpa.invalid && gpa.touched" class="error-message">
+          <small *ngIf="gpa.errors?.['required']">GPA is required.</small>
+          <small *ngIf="gpa.errors?.['min']">GPA must be at least 0.</small>
+          <small *ngIf="gpa.errors?.['max']">GPA cannot be more than 4.</small>
+        </div>
+      </div>
+  
+
+      <button type="submit"   class="btn-submit">Update Student</button>
+  </form>
+</div>
+</div>

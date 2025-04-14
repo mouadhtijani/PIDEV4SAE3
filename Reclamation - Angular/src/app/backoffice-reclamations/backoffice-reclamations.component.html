@@ -1,0 +1,37 @@
+<div class="container">
+    <h1>Réclamations à traiter</h1>
+  
+    <div *ngIf="reclamations.length > 0">
+      <div *ngFor="let reclamation of reclamations">
+        <div class="reclamation-item">
+          <h3>{{ reclamation.objet }}</h3>
+          <p><strong>Nom:</strong> {{ reclamation.nomUser }}</p>
+          <p><strong>Description:</strong> {{ reclamation.description }}</p>
+  
+          <!-- Affichage de la réponse si elle existe -->
+          <div *ngIf="reclamation.response">
+            <p><strong>Réponse:</strong> {{ reclamation.response.message }}</p>
+          </div>
+  
+          <!-- Affichage du bouton pour répondre -->
+          <button *ngIf="!reclamation.response" (click)="selectReclamationForResponse(reclamation.id)">
+            Répondre
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Formulaire de réponse -->
+    <div *ngIf="selectedReclamationId !== null">
+      <h3>Répondre à la réclamation</h3>
+      <textarea [(ngModel)]="message" placeholder="Entrez votre réponse ici..." rows="4"></textarea>
+      <button (click)="respondToReclamation(selectedReclamationId)">Envoyer la réponse</button>
+      <button (click)="selectedReclamationId = null">Annuler</button>
+    </div>
+  
+    <!-- Si aucune réclamation n'est trouvée -->
+    <div *ngIf="reclamations.length === 0">
+      <p>Aucune réclamation à traiter.</p>
+    </div>
+  </div>
+  

@@ -1,0 +1,12 @@
+
+spring:
+  application:
+    name: feedbacks
+
+
+
+  config:
+    import: optional:configserver:http://localhost:8888
+
+
+

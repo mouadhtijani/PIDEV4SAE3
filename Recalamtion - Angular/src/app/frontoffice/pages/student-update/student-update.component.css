@@ -1,0 +1,97 @@
+.page-background {
+    background-image: url('src/assets/images/feedback.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; /* Add padding for responsiveness */
+}
+
+/* General Styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Form Container */
+.form-container {
+    max-width: 700px; /* Increased max-width for a wider container */
+    width: 100%; /* Ensure it stretches to full width on smaller screens */
+    margin: 50px auto;
+    padding: 40px; /* More padding for spaciousness */
+    background: rgba(255, 255, 255, 0.5); /* More transparent white background (alpha set to 0.5) */
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2); /* Larger shadow for depth */
+    text-align: center;
+    transition: transform 0.3s ease; /* For hover effect */
+    backdrop-filter: blur(10px); /* Adds a blur effect behind the container */
+}
+
+.form-container:hover {
+    transform: scale(1.02); /* Slight zoom effect on hover */
+}
+
+/* Form Header */
+h2 {
+    color: #333;
+    font-size: 28px; /* Larger font size for the header */
+    margin-bottom: 30px;
+}
+
+/* Form Group */
+.form-group {
+    margin-bottom: 20px; /* Increased space between fields */
+    text-align: left;
+}
+
+/* Labels */
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px; /* More space between label and input */
+    color: #555;
+}
+
+/* Input Fields */
+.form-group input {
+    width: 100%;
+    padding: 12px; /* Increased padding for larger input */
+    border-radius: 8px; /* More rounded edges */
+    border: 1px solid #ccc;
+    font-size: 16px;
+    transition: border 0.3s ease;
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
+}
+
+/* Input Focus */
+.form-group input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Submit Button */
+.btn-submit {
+    width: 100%;
+    padding: 14px; /* Slightly larger padding for the button */
+    font-size: 18px; /* Larger font size */
+    font-weight: 600;
+    border-radius: 8px; /* More rounded edges */
+    background-color: #007bff;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.btn-submit:hover {
+    background: #0056b3;
+    transform: translateY(-2px); /* Button hover effect */
+}
+
+.btn-submit:active {
+    transform: translateY(1px); /* Button click effect */
+}

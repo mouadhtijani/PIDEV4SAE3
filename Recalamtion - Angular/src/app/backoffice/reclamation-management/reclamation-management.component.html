@@ -1,0 +1,27 @@
+<main class="main">
+  <section class="section">
+    <h2 class="text-center mb-4">Manage Reclamations</h2>
+
+    <!-- Affichage pendant le chargement -->
+    <div *ngIf="isLoading" class="text-center">Loading...</div>
+
+    <!-- Liste des réclamations -->
+    <div *ngIf="!isLoading">
+      <div *ngIf="reclamations.length === 0" class="alert alert-warning">
+        No reclamations found.
+      </div>
+
+      <!-- Template -->
+<div *ngFor="let reclamation of reclamations">
+  <div class="card mb-4">
+    <div class="card-body">
+      <h5 class="card-title">{{ reclamation.objet }}</h5>
+      <p>{{ reclamation.description }}</p>
+      
+      <!-- Vérifier que l'ID existe avant d'utiliser l'action -->
+      <button *ngIf="reclamation.id" class="btn btn-primary" (click)="respondToReclamation(reclamation.id!)">
+        Respond
+      </button>
+    </div>
+  </div>
+</div>

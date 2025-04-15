@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Events - Append Bootstrap Template</title>
+    <link href="/assets/front/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/front/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/front/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/assets/front/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/front/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="/assets/front/css/main.css" rel="stylesheet">
+    <style>
+        .event-container {
+            font-family: 'Arial', sans-serif;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .event-container h3 {
+            font-size: 28px;
+            color: #333;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .event-container .btn {
+            padding: 10px 20px;
+            font-size: 14px;
+            margin-right: 10px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-3d {
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px #999;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .btn-3d:active {
+            box-shadow: 0 2px #666;
+            transform: translateY(2px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(145deg, #007bff, #0056b3);
+        }
+
+        .btn-danger {
+            background: linear-gradient(145deg, #dc3545, #a71d2a);
+        }
+
+        .btn-warning {
+            background: linear-gradient(145deg, #ffc107, #d39e00);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(145deg, #6c757d, #495057);
+        }
+
+        .event-list div {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .event-list p {
+            font-size: 18px;
+            color: #333;
+        }
+
+        .event-list button {
+            padding: 8px 12px;
+            font-size: 14px;
+            border: none;
+            border-radius: 8px;
+            margin-left: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .event-list .btn-primary {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .event-list .btn-danger {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .event-list .btn-warning {
+            background-color: #ffc107;
+            color: black;
+        }
+
+        .event-list button:hover {
+            filter: brightness(0.9);
+        }
+
+        .stats {
+            display: flex;
+            gap: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .pagination-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .pagination-controls button {
+            padding: 10px 15px;
+            font-size: 14px;
+            border: none;
+            border-radius: 8px;
+            margin: 0 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .pagination-controls button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .pagination-controls button:hover:not(:disabled) {
+            background-color: #0056b3;
+        }
+
+        /* Modal styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            max-width: 700px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #666;
+        }
+
+        .modal-close:hover {
+            color: #333;
+        }
+
+        .modal-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #007bff;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+
+        .modal-body p {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #555;
+        }
+
+        .modal-body strong {
+            color: #333;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .recommendations {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .recommendations h4 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .recommendations ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .recommendations li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+    </style>
+</head>
+
+<body class="index-page" data-aos-easing="ease-in-out" data-aos-duration="600" data-aos-delay="0">
+
+    <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid position-relative d-flex align-items-center justify-content-between">
+            <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+                <h1 class="sitename">Append</h1><span>.</span>
+            </a>
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                    <li><a href="index.html#hero" class="active">Home</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#services">Services</a></li>
+                    <li><a href="index.html#portfolio">Portfolio</a></li>
+                    <li><a href="index.html#pricing">Pricing</a></li>
+                    <li><a href="index.html#team">Team</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                        <ul>
+                            <li><a href="#">Dropdown 1</a></li>
+                            <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                                <ul>
+                                    <li><a href="#">Deep Dropdown 1</a></li>
+                                    <li><a href="#">Deep Dropdown 2</a></li>
+                                    <li><a href="#">Deep Dropdown 3</a></li>
+                                    <li><a href="#">Deep Dropdown 4</a></li>
+                                    <li><a href="#">Deep Dropdown 5</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Dropdown 2</a></li>
+                            <li><a href="#">Dropdown 3</a></li>
+                            <li><a href="#">Dropdown 4</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+            <a class="btn-getstarted" href="index.html#about">Get Started</a>
+        </div>
+    </header>
+
+    <main class="main">
+
+        <!-- Hero Section -->
+        <section id="hero" class="hero section dark-background">
+            <img src="/assets/front/img/hero-bg.jpg" alt="" data-aos="fade-in" class="aos-init aos-animate">
+            <div class="container mt-5">
+                <h2 class="mb-4">Gestion des événements</h2>
+                <p>Découvrez et exprimez votre intérêt pour les événements.</p>
+
+                <!-- Calendrier FullCalendar -->
+                <div class="my-4">
+                    <h4>Calendrier des événements</h4>
+                    <full-calendar [options]="calendarOptions"></full-calendar>
+                </div>
+
+                <!-- Section des événements -->
+                <section class="event-container">
+                    <h3>Liste des événements</h3>
+
+                    <!-- Search Bar -->
+                    <input type="text" class="form-control mb-3" placeholder="Rechercher un événement" (input)="filterEvents($any($event))">
+                    <!-- Bouton pour envoyer une notification test -->
+                    <button (click)="sendTestNotification()" class="btn btn-primary mb-3">
+                        Envoyer une notification test
+                    </button>  
+                    
+                    <!-- Liste des événements -->
+                    <div class="event-list">
+                        <div *ngFor="let event of paginatedEvents" class="event-card">
+                            <h4>{{ event.title }}</h4>
+                            <p><strong>Date de début:</strong> {{ event.startDate | date: 'short' }}</p>
+                            <p><strong>Description:</strong> {{ event.description }}</p>
+
+                            <div class="reaction-buttons">
+                                <button (click)="expressInterest(event, 'interested')" class="btn btn-primary">
+                                    Interested ({{ event.interestedCount || 0 }})
+                                </button>
+                                <button (click)="expressInterest(event, 'not_interested')" class="btn btn-danger">
+                                    Not Interested ({{ event.notInterestedCount || 0 }})
+                                </button>
+                                <button (click)="expressInterest(event, 'slightly_interested')" class="btn btn-warning">
+                                    Slightly Interested ({{ event.somewhatInterestedCount || 0 }})
+                                </button>
+                            </div>
+
+                            <button (click)="openEventDetails(event)" class="btn btn-secondary mt-2">
+                                Voir les détails
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="pagination-controls mt-4">
+                        <button (click)="prevPage()" [disabled]="currentPage === 1">Précédent</button>
+                        <button (click)="nextPage()" [disabled]="currentPage === totalPages">Suivant</button>
+                    </div>
+                </section>
+            </div>
+        </section><!-- /Hero Section -->
+        <!-- === ChatBot intégré à EventComponent === -->
+<div class="chatbot-wrapper" [class.open]="chatOpen">
+    <div class="chat-header" (click)="toggleChat()">
+      🤖 ChatBot Événements
+    </div>
+  
+    <div class="chat-body" *ngIf="chatOpen">
+      <div *ngFor="let msg of chatMessages" [ngClass]="{'user-message': msg.user, 'bot-message': !msg.user}">
+        {{ msg.message }}
+      </div>
+      <div class="chat-input-area d-flex align-items-center mt-2">
+        <input type="text" [(ngModel)]="chatInput" (keydown.enter)="sendChatMessage()" placeholder="Posez votre question..." class="form-control me-2" />
+        <button class="btn btn-primary me-2" (click)="sendChatMessage()">Envoyer</button>
+        <button class="btn btn-outline-secondary" (click)="startVoiceRecognition()" title="Parler">
+          <i class="bi bi-mic-fill"></i>
+        </button>
+      </div>
+      
+    </div>
+  </div>
+  
+
+        <!-- Modal for Event Details -->
+        <div class="modal-overlay" [class.active]="selectedEvent">
+            <div class="modal-content" *ngIf="selectedEvent">
+                <button class="modal-close" (click)="closeEventDetails()">&times;</button>
+                <h3 class="modal-title">Détails de l'événement</h3>
+                
+                <div class="modal-body">
+                    <p><strong>Titre:</strong> {{ selectedEvent.title }}</p>
+                    <p><strong>Date de début:</strong> {{ selectedEvent.startDate | date: 'short' }}</p>
+                    <p><strong>Description:</strong> {{ selectedEvent.description }}</p>
+                    <p><strong>Lieu:</strong> {{ selectedEvent.location }}</p>
+                    <p><strong>Type:</strong> {{ selectedEvent.eventType }}</p>
+                    <p><strong>Participants maximum:</strong> {{ selectedEvent.maxAttendees }}</p>
+
+                    <div class="modal-actions">
+                        <button (click)="generateQRCode()" class="btn btn-info btn-3d">
+                            <a [href]="qrcodeUrl" target="_blank" class="btn btn-danger me-2">Generate QrCode</a>
+                        </button>
+                        <button (click)="viewRecommendations(selectedEvent)" class="btn btn-info">
+                            Voir les événements similaires
+                        </button>
+                    </div>
+
+                    <div *ngIf="recommendations.length > 0" class="recommendations">
+                        <h4>Événements recommandés:</h4>
+                        <ul>
+                            <li *ngFor="let event of recommendations">{{ event.title }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer id="footer" class="footer position-relative light-background">
+        <div class="container footer-top">
+            <div class="row gy-4">
+                <div class="col-lg-5 col-md-12 footer-about">
+                    <a href="index.html" class="logo d-flex align-items-center">
+                        <span class="sitename">Append</span>
+                    </a>
+                    <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+                    <div class="social-links d-flex mt-4">
+                        <a href=""><i class="bi bi-twitter-x"></i></a>
+                        <a href=""><i class="bi bi-facebook"></i></a>
+                        <a href=""><i class="bi bi-instagram"></i></a>
+                        <a href=""><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-6 footer-links">
+                    <h4>Useful Links</h4>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Terms of service</a></li>
+                        <li><a href="#">Privacy policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-6 footer-links">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><a href="#">Web Design</a></li>
+                        <li><a href="#">Web Development</a></li>
+                        <li><a href="#">Product Management</a></li>
+                        <li><a href="#">Marketing</a></li>
+                        <li><a href="#">Graphic Design</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+                    <h4>Contact Us</h4>
+                    <p>A108 Adam Street</p>
+                    <p>New York, NY 535022</p>
+                    <p>United States</p>
+                    <p class="mt-4"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
+                    <p><strong>Email:</strong> <span>info.com</span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container copyright text-center mt-4">
+            <p>© <span>Copyright</span> <strong class="sitename">Append</strong> <span>All Rights Reserved</span></p>
+            <div class="credits">
+                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> Distributed By <a href="https://themewagon.com">ThemeWagon</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="/assets/front/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/front/vendor/php-email-form/validate.js"></script>
+    <script src="/assets/front/vendor/aos/aos.js"></script>
+    <script src="/assets/front/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="/assets/front/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="/assets/front/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/front/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/front/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="/assets/front/js/main.js"></script>
+
+</body>
+
+</html>

@@ -35,7 +35,7 @@ export class RegisterComponent {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      this.myrole = params['value'];
+      this.myrole = "STUDENT";
     });
   }
 

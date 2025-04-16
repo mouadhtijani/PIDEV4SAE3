@@ -1,0 +1,93 @@
+<div class="main">
+  <div class="image">
+    <img class="myimage" src="../assets/images/student_register.png">
+  </div>
+  <div class="form">
+    <div class="card">
+      <h4 class="title">Final Step to join our Community</h4>
+
+      <form #studentForm="ngForm" (ngSubmit)="save()">
+        <div class="studentclasscard">
+          <!-- Level -->
+          <div class="level">
+            <label>Level :</label><br><br>
+            <select id="student-level" 
+                    [(ngModel)]="selectedLevel" 
+                    name="level"
+                    required
+                    #level="ngModel"
+                    [ngClass]="{ 'is-invalid': (level.touched || submitted) && level.invalid }">
+              <option value="" disabled selected>Level</option>
+              <option *ngFor="let level of mylevel" [value]="level">
+                {{ level }}
+              </option>
+            </select>
+            <div *ngIf="(level.touched || submitted) && level.invalid" class="error-message">
+              Level is required
+            </div>
+          </div>
+
+          <!-- Class -->
+          <div class="classe">
+            <label>Class :</label><br><br>
+            <select id="class-level" 
+                    [(ngModel)]="selectedClasse" 
+                    name="classe"
+                    required
+                    #classe="ngModel"
+                    [ngClass]="{ 'is-invalid': (classe.touched || submitted) && classe.invalid }">
+              <option value="" disabled selected>Classe</option>
+              <option *ngFor="let classe of myclasse" [value]="classe">
+                {{classe}}
+              </option>
+            </select>
+            <div *ngIf="(classe.touched || submitted) && classe.invalid" class="error-message">
+              Class is required
+            </div>
+          </div>
+
+          <!-- Speciality -->
+          <div class="speciality">
+            <label>Speciality :</label><br><br>
+            <select id="speciality" 
+                    [(ngModel)]="selectedSpeciality" 
+                    name="speciality"
+                    required
+                    #speciality="ngModel"
+                    [ngClass]="{ 'is-invalid': (speciality.touched || submitted) && speciality.invalid }">
+              <option value="" disabled selected>Speciality</option>
+              <option *ngFor="let speciality of myspecialities" [value]="speciality">
+                {{ speciality }}
+              </option>
+            </select>
+            <div *ngIf="(speciality.touched || submitted) && speciality.invalid" class="error-message">
+              Speciality is required
+            </div>
+          </div>
+        </div>
+
+        <!-- Birthdate -->
+        <input type="date" 
+               [max]="maxDate" 
+               [(ngModel)]="birthdate" 
+               name="birthdate"
+               required
+               #birthdateField="ngModel"
+               [ngClass]="{ 'is-invalid': (birthdateField.touched || submitted) && birthdateField.invalid }"
+               class="birthdate">
+        <div *ngIf="(birthdateField.touched || submitted) && birthdateField.invalid" class="error-message">
+          Birthdate is required
+        </div>
+
+        <!-- CV File (sans validation) -->
+        <input type="file" 
+               [(ngModel)]="uriCV" 
+               (change)="onFileSelected($event)"
+               style="margin-top: 25px; margin-left: 50px; color: rgb(216, 216, 192);">
+        
+        <br><br>
+        <button class="btn_finish" type="submit">Finish</button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,1866 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "OpenAPI definition",
+        "version": "v0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:9090",
+            "description": "Generated server url"
+        }
+    ],
+    "paths": {
+        "/api/v1/user/student/{id_user}": {
+            "put": {
+                "tags": [
+                    "user-controller"
+                ],
+                "operationId": "setStudentProfile",
+                "parameters": [
+                    {
+                        "name": "id_user",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "birthdate",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        }
+                    },
+                    {
+                        "name": "level",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "LICENCE",
+                                "MASTER",
+                                "ENGINEER"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "classe",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "FIRST_YEAR",
+                                "SECOND_YEAR",
+                                "THIRD_YEAR",
+                                "FOURTH_YEAR",
+                                "FIFTH_YEAR"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "speciality",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "ARCTIC",
+                                "BI",
+                                "GAMING",
+                                "DS",
+                                "TWIN"
+                            ]
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "studentCV"
+                                ],
+                                "type": "object",
+                                "properties": {
+                                    "studentCV": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user/set-image/": {
+            "put": {
+                "tags": [
+                    "user-controller"
+                ],
+                "operationId": "setUserImage",
+                "parameters": [
+                    {
+                        "name": "id_user",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "userImage"
+                                ],
+                                "type": "object",
+                                "properties": {
+                                    "userImage": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/v1/internship/set-internship/{id_internship}": {
+            "put": {
+                "tags": [
+                    "internship-controller"
+                ],
+                "operationId": "setInternship",
+                "parameters": [
+                    {
+                        "name": "id_internship",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/InternshipRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "202": {
+                        "description": "Accepted",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternshipResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/company/set-status/{id_company}": {
+            "put": {
+                "tags": [
+                    "company-controller"
+                ],
+                "operationId": "setCompanyStatus",
+                "parameters": [
+                    {
+                        "name": "id_company",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "newStatus",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "PENDING",
+                                "ACCEPTED",
+                                "REFUSED"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Company"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/company/set-company/{id_company}": {
+            "put": {
+                "tags": [
+                    "company-controller"
+                ],
+                "operationId": "setCompany",
+                "parameters": [
+                    {
+                        "name": "id_company",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CompanyRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Company"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/application/set-Status/{id_application}": {
+            "put": {
+                "tags": [
+                    "application-controller"
+                ],
+                "operationId": "setApplicationStatus",
+                "parameters": [
+                    {
+                        "name": "id_application",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "newStatus",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "PENDING",
+                                "ACCEPTED",
+                                "REFUSED"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApplicationResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/internship/create": {
+            "post": {
+                "tags": [
+                    "internship-controller"
+                ],
+                "operationId": "createNewInternship",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/InternshipRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternshipResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/company/Create": {
+            "post": {
+                "tags": [
+                    "company-controller"
+                ],
+                "operationId": "addCompany",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CompanyRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Company"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/register": {
+            "post": {
+                "tags": [
+                    "authentication-controller"
+                ],
+                "operationId": "register",
+                "parameters": [
+                    {
+                        "name": "firstName",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "lastName",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "role",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "SUPERVISOR",
+                                "STUDENT",
+                                "ADMIN"
+                            ]
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "userImage"
+                                ],
+                                "type": "object",
+                                "properties": {
+                                    "userImage": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "Accepted",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/authenticate": {
+            "post": {
+                "tags": [
+                    "authentication-controller"
+                ],
+                "operationId": "authenticate",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AuthenticationRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "202": {
+                        "description": "Accepted",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AuthenticationResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/application/addNewApplication": {
+            "post": {
+                "tags": [
+                    "application-controller"
+                ],
+                "operationId": "addNewApplication",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ApplicationRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApplicationResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user/{id_user}": {
+            "get": {
+                "tags": [
+                    "user-controller"
+                ],
+                "operationId": "findUserById",
+                "parameters": [
+                    {
+                        "name": "id_user",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user/token": {
+            "get": {
+                "tags": [
+                    "user-controller"
+                ],
+                "operationId": "findUserByToken",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user/student": {
+            "get": {
+                "tags": [
+                    "user-controller"
+                ],
+                "operationId": "findUserByEmail",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user/student-level": {
+            "get": {
+                "tags": [
+                    "user-controller"
+                ],
+                "operationId": "getAllUserByStudentLevel",
+                "parameters": [
+                    {
+                        "name": "studentlevel",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "LICENCE",
+                                "MASTER",
+                                "ENGINEER"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "302": {
+                        "description": "Found",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/User"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user/speciality": {
+            "get": {
+                "tags": [
+                    "user-controller"
+                ],
+                "operationId": "getAllUserBySpeciality",
+                "parameters": [
+                    {
+                        "name": "speciality",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "ARCTIC",
+                                "BI",
+                                "GAMING",
+                                "DS",
+                                "TWIN"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "302": {
+                        "description": "Found",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/User"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user/role": {
+            "get": {
+                "tags": [
+                    "user-controller"
+                ],
+                "operationId": "getAllUserByRole",
+                "parameters": [
+                    {
+                        "name": "role",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "SUPERVISOR",
+                                "STUDENT",
+                                "ADMIN"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "302": {
+                        "description": "Found",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/User"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user/classe-level": {
+            "get": {
+                "tags": [
+                    "user-controller"
+                ],
+                "operationId": "getAllUserByClasseLevel",
+                "parameters": [
+                    {
+                        "name": "classLevel",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "FIRST_YEAR",
+                                "SECOND_YEAR",
+                                "THIRD_YEAR",
+                                "FOURTH_YEAR",
+                                "FIFTH_YEAR"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "302": {
+                        "description": "Found",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/User"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/internship": {
+            "get": {
+                "tags": [
+                    "internship-controller"
+                ],
+                "operationId": "getAllInternship",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/InternshipResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/internship/{id_internship}": {
+            "get": {
+                "tags": [
+                    "internship-controller"
+                ],
+                "operationId": "getInternshipByID",
+                "parameters": [
+                    {
+                        "name": "id_internship",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternshipResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "internship-controller"
+                ],
+                "operationId": "deleteInternship",
+                "parameters": [
+                    {
+                        "name": "id_internship",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "id_supervisor",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternshipResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/internship/supervisor": {
+            "get": {
+                "tags": [
+                    "internship-controller"
+                ],
+                "operationId": "getAllintershipBySupervisor",
+                "parameters": [
+                    {
+                        "name": "id_supervisor",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/InternshipResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/internship/internship-type": {
+            "get": {
+                "tags": [
+                    "internship-controller"
+                ],
+                "operationId": "getAllInternshipByType",
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "FULL_TIME",
+                                "PART_TIME",
+                                "ONSITE",
+                                "REMOTE"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/InternshipResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/internship/internship-status": {
+            "get": {
+                "tags": [
+                    "internship-controller"
+                ],
+                "operationId": "getAllInternshipByStatus",
+                "parameters": [
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "OPEN",
+                                "CLOSE"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/InternshipResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/internship/date-after": {
+            "get": {
+                "tags": [
+                    "internship-controller"
+                ],
+                "operationId": "getAllInternshipAfternDate",
+                "parameters": [
+                    {
+                        "name": "start-date",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/InternshipResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/internship/company/{id_company}": {
+            "get": {
+                "tags": [
+                    "internship-controller"
+                ],
+                "operationId": "getAllInternshipByCompany",
+                "parameters": [
+                    {
+                        "name": "id_company",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "302": {
+                        "description": "Found",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/InternshipResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/company": {
+            "get": {
+                "tags": [
+                    "company-controller"
+                ],
+                "operationId": "getAllCompany",
+                "responses": {
+                    "302": {
+                        "description": "Found",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CompanyResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/company/{id_company}": {
+            "get": {
+                "tags": [
+                    "company-controller"
+                ],
+                "operationId": "getCompanyById",
+                "parameters": [
+                    {
+                        "name": "id_company",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Company"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/company/status": {
+            "get": {
+                "tags": [
+                    "company-controller"
+                ],
+                "operationId": "getAllCompanyByStatus",
+                "parameters": [
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "PENDING",
+                                "ACCEPTED",
+                                "REFUSED"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "302": {
+                        "description": "Found",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CompanyResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/company/domaine": {
+            "get": {
+                "tags": [
+                    "company-controller"
+                ],
+                "operationId": "getAllCompanyByDomaine",
+                "parameters": [
+                    {
+                        "name": "domaine",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "TELECOM",
+                                "NETWORK",
+                                "DEVELOPMENT",
+                                "CLOUD",
+                                "ENERGY",
+                                "BIOLOGY"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "302": {
+                        "description": "Found",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CompanyResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/activate-account": {
+            "get": {
+                "tags": [
+                    "authentication-controller"
+                ],
+                "operationId": "confirm",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/v1/application/{id_application}": {
+            "get": {
+                "tags": [
+                    "application-controller"
+                ],
+                "operationId": "getOneApplication",
+                "parameters": [
+                    {
+                        "name": "id_application",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "302": {
+                        "description": "Found",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApplicationResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/application/user/{id_user}": {
+            "get": {
+                "tags": [
+                    "application-controller"
+                ],
+                "operationId": "getApplicationByUser",
+                "parameters": [
+                    {
+                        "name": "id_user",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "302": {
+                        "description": "Found",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ApplicationResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/application/status": {
+            "get": {
+                "tags": [
+                    "application-controller"
+                ],
+                "operationId": "getApplicationbyStatus",
+                "parameters": [
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "PENDING",
+                                "ACCEPTED",
+                                "REFUSED"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "302": {
+                        "description": "Found",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ApplicationResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/application/internship/{id_internship}": {
+            "get": {
+                "tags": [
+                    "application-controller"
+                ],
+                "operationId": "getApplicationByInternship",
+                "parameters": [
+                    {
+                        "name": "id_internship",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "302": {
+                        "description": "Found",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ApplicationResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/application/company/{id_company}": {
+            "get": {
+                "tags": [
+                    "application-controller"
+                ],
+                "operationId": "getApplicationByCompany",
+                "parameters": [
+                    {
+                        "name": "id_company",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "302": {
+                        "description": "Found",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ApplicationResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/application": {
+            "delete": {
+                "tags": [
+                    "application-controller"
+                ],
+                "operationId": "deleteApplication",
+                "parameters": [
+                    {
+                        "name": "id_application",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "id_student",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApplicationResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "GrantedAuthority": {
+                "type": "object",
+                "properties": {
+                    "authority": {
+                        "type": "string"
+                    }
+                }
+            },
+            "User": {
+                "type": "object",
+                "properties": {
+                    "userId": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "firstName": {
+                        "type": "string"
+                    },
+                    "lastName": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    },
+                    "role": {
+                        "type": "string",
+                        "enum": [
+                            "SUPERVISOR",
+                            "STUDENT",
+                            "ADMIN"
+                        ]
+                    },
+                    "studentLevel": {
+                        "type": "string",
+                        "enum": [
+                            "LICENCE",
+                            "MASTER",
+                            "ENGINEER"
+                        ]
+                    },
+                    "classeLevel": {
+                        "type": "string",
+                        "enum": [
+                            "FIRST_YEAR",
+                            "SECOND_YEAR",
+                            "THIRD_YEAR",
+                            "FOURTH_YEAR",
+                            "FIFTH_YEAR"
+                        ]
+                    },
+                    "specialty": {
+                        "type": "string",
+                        "enum": [
+                            "ARCTIC",
+                            "BI",
+                            "GAMING",
+                            "DS",
+                            "TWIN"
+                        ]
+                    },
+                    "userImage": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "format": "byte"
+                        }
+                    },
+                    "studentCV": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "format": "byte"
+                        }
+                    },
+                    "accountLocked": {
+                        "type": "boolean"
+                    },
+                    "birthdate": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "creationDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "lastModifiedDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "enabled": {
+                        "type": "boolean"
+                    },
+                    "username": {
+                        "type": "string"
+                    },
+                    "authorities": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/GrantedAuthority"
+                        }
+                    },
+                    "accountNonLocked": {
+                        "type": "boolean"
+                    },
+                    "accountNonExpired": {
+                        "type": "boolean"
+                    },
+                    "credentialsNonExpired": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "InternshipRequest": {
+                "required": [
+                    "companyCode",
+                    "companyId",
+                    "endDate",
+                    "internshipType",
+                    "postCapacity",
+                    "postDescription",
+                    "postName",
+                    "startDate",
+                    "supervisorId"
+                ],
+                "type": "object",
+                "properties": {
+                    "postName": {
+                        "type": "string"
+                    },
+                    "postDescription": {
+                        "type": "string"
+                    },
+                    "postCapacity": {
+                        "maximum": 2147483647,
+                        "minimum": 1,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "startDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "endDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "internshipType": {
+                        "type": "string",
+                        "enum": [
+                            "FULL_TIME",
+                            "PART_TIME",
+                            "ONSITE",
+                            "REMOTE"
+                        ]
+                    },
+                    "supervisorId": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "companyId": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "companyCode": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                }
+            },
+            "InternshipResponse": {
+                "type": "object",
+                "properties": {
+                    "internshipId": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "postName": {
+                        "type": "string"
+                    },
+                    "postDescription": {
+                        "type": "string"
+                    },
+                    "postCapacity": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "startDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "endDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "internshipStatus": {
+                        "type": "string",
+                        "enum": [
+                            "OPEN",
+                            "CLOSE"
+                        ]
+                    },
+                    "creationDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "internshipType": {
+                        "type": "string",
+                        "enum": [
+                            "FULL_TIME",
+                            "PART_TIME",
+                            "ONSITE",
+                            "REMOTE"
+                        ]
+                    },
+                    "supervisorId": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "companyId": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                }
+            },
+            "Company": {
+                "type": "object",
+                "properties": {
+                    "companyId": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "companyName": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "type": "string"
+                    },
+                    "domaine": {
+                        "type": "string",
+                        "enum": [
+                            "TELECOM",
+                            "NETWORK",
+                            "DEVELOPMENT",
+                            "CLOUD",
+                            "ENERGY",
+                            "BIOLOGY"
+                        ]
+                    },
+                    "companyPrintCode": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "companyEmail": {
+                        "type": "string"
+                    },
+                    "companyTelephone": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "companyStatus": {
+                        "type": "string",
+                        "enum": [
+                            "PENDING",
+                            "ACCEPTED",
+                            "REFUSED"
+                        ]
+                    },
+                    "webSite": {
+                        "type": "string"
+                    },
+                    "supervisor": {
+                        "$ref": "#/components/schemas/User"
+                    }
+                }
+            },
+            "CompanyRequest": {
+                "required": [
+                    "address",
+                    "companyEmail",
+                    "companyName",
+                    "companyTelephone",
+                    "domaine",
+                    "webSite"
+                ],
+                "type": "object",
+                "properties": {
+                    "supervisorId": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "companyName": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "type": "string"
+                    },
+                    "domaine": {
+                        "type": "string",
+                        "enum": [
+                            "TELECOM",
+                            "NETWORK",
+                            "DEVELOPMENT",
+                            "CLOUD",
+                            "ENERGY",
+                            "BIOLOGY"
+                        ]
+                    },
+                    "webSite": {
+                        "type": "string"
+                    },
+                    "companyEmail": {
+                        "type": "string"
+                    },
+                    "companyTelephone": {
+                        "maximum": 8,
+                        "minimum": 8,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                }
+            },
+            "ApplicationResponse": {
+                "type": "object",
+                "properties": {
+                    "applicationId": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "applicationDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "applicationStatus": {
+                        "type": "string",
+                        "enum": [
+                            "PENDING",
+                            "ACCEPTED",
+                            "REFUSED"
+                        ]
+                    },
+                    "student": {
+                        "$ref": "#/components/schemas/User"
+                    },
+                    "internshipId": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                }
+            },
+            "AuthenticationRequest": {
+                "required": [
+                    "email",
+                    "password"
+                ],
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "maxLength": 2147483647,
+                        "minLength": 8,
+                        "type": "string"
+                    }
+                }
+            },
+            "AuthenticationResponse": {
+                "type": "object",
+                "properties": {
+                    "token": {
+                        "type": "string"
+                    },
+                    "userID": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "userRole": {
+                        "type": "string",
+                        "enum": [
+                            "SUPERVISOR",
+                            "STUDENT",
+                            "ADMIN"
+                        ]
+                    }
+                }
+            },
+            "ApplicationRequest": {
+                "required": [
+                    "internshipId",
+                    "studentId"
+                ],
+                "type": "object",
+                "properties": {
+                    "studentId": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "internshipId": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                }
+            },
+            "CompanyResponse": {
+                "type": "object",
+                "properties": {
+                    "companyName": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "type": "string"
+                    },
+                    "domaine": {
+                        "type": "string",
+                        "enum": [
+                            "TELECOM",
+                            "NETWORK",
+                            "DEVELOPMENT",
+                            "CLOUD",
+                            "ENERGY",
+                            "BIOLOGY"
+                        ]
+                    },
+                    "webSite": {
+                        "type": "string"
+                    },
+                    "companyEmail": {
+                        "type": "string"
+                    },
+                    "companyTelephone": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "companyId": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                }
+            }
+        }
+    }
+}

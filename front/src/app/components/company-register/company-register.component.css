@@ -1,0 +1,131 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .main {
+    display: flex;
+    padding: 0;
+  }
+  
+  .image, .form {
+    height: 100vh;
+    width: 50%;
+    margin: 0;
+    max-height: max-content;
+  }
+  
+  .image .myimage {
+    height: 100%;
+    width: 100%;
+  }
+  
+  .form .card {
+    margin: 30px auto;
+    border-radius: 25px;
+    height: 650px;
+    width: 500px;
+    opacity: 0.5;
+    background: black;
+    border: 1px solid black;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .info {
+    color: aliceblue;
+    margin-top: 35px;
+    width: 90%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+  
+  .companyname, .domaine, .telephone, .zipcode, .input_email, .website, .address {
+    background-color: transparent;
+    margin-left: 60px;
+    height: 55px;
+    padding-left: 10px;
+    color: aliceblue;
+    border-radius: 5px;
+    border: 1px solid rgb(209, 219, 219);
+    display: block;
+    width: calc(50% - 20px);
+    box-sizing: border-box;
+  }
+  
+  .companyname, .address {
+    width: calc(50% - 20px);
+  }
+  
+  .domaine, .telephone, .zipcode, .input_email, .website {
+    width: calc(50% - 20px);
+  }
+  
+  .website {
+    margin-left: 26px;
+    width: calc(50% - 20px);
+  }
+  
+  .btn_back, .btn_finish {
+    color: aliceblue;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  
+  .btn_back {
+    margin-left: 390px;
+    font-style: normal;
+  }
+  
+  .btn_finish {
+    margin-left: 60px;
+    height: 55px;
+    width: 360px;
+    border-radius: 35px;
+    border: none;
+    background-color: rgb(87, 87, 100);
+    font-size: 20px;
+    font-weight: bolder;
+    padding-left: 10px;
+  }
+
+  .is-invalid {
+    border: 2px solid #ff3860 !important;
+  }
+  
+  .error-message {
+    color: #ff3860;
+    font-size: 12px;
+    margin-left: 10px;
+    margin-top: 5px;
+  }
+  
+  .error-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 10px;
+  }
+  
+  select.is-invalid {
+    border-color: #ff3860 !important;
+  } 
+  
+  button:hover {
+    animation: bubble 0.4s ease-out;
+  }
+  
+  @keyframes bubble {
+    0% {
+      transform: scale(1);
+      background: linear-gradient(90deg, #5795e6, #0ea2f1);
+    }
+    50% {
+      transform: scale(1.2);
+      background: linear-gradient(90deg, #5795e6, #0ea2f1);
+    }
+    100% {
+      transform: scale(1);
+      background: linear-gradient(90deg, #5795e6, #0ea2f1);
+    }
+  }
+  

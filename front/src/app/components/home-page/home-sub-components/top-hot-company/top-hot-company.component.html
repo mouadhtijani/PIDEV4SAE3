@@ -1,0 +1,14 @@
+    <label
+      style="margin-left: 10%;font-size: 21px;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-weight: bold; color: gray;">
+      Top Recruitments agencies </label>
+
+
+    <div class="onecompany" *ngFor="let internship of Top3company">
+      <div class="onecompanyy">
+        <img (click)="goToCompanyWeb(internship.company.webSite)" class="imgcompany" style="cursor: pointer;" [src]="'data:image/png;base64,' + internship.company.company_logo"><br>
+        <div style="background-color: whitesmoke;margin-top: 18px; width: 100%;">
+          <label class="companyname">{{ internship.company.companyName }}</label><br>
+          <label class="companyfield"> {{internship.company.domaine}} </label>
+        </div>
+      </div>
+    </div>

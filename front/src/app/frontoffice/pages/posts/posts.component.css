@@ -1,0 +1,311 @@
+/* Notification Bell Icon */
+.notification-bell {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.notification-bell i {
+  font-size: 2rem;
+}
+
+.notification-bell .badge {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+}
+
+/* Modal for Notifications */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.modal.show {
+  display: block;
+}
+
+.modal-dialog {
+  margin: 15% auto;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.list-group-item {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+/* Notification Bell */
+.notification-bell {
+position: fixed;
+bottom: 20px;  /* Distance from the bottom */
+right: 20px;   /* Distance from the right */
+z-index: 1000; /* Ensure it stays above other content */
+}
+
+.btn-icon {
+padding: 12px; /* Slightly larger for better click area */
+border-radius: 50%;
+font-size: 1.3rem; /* Slightly larger icon */
+background-color: #fff; /* White background for contrast */
+border: 1px solid #dee2e6; /* Subtle border */
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow */
+transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-icon:hover {
+background-color: #f1f3f5; /* Light gray on hover */
+transform: scale(1.1); /* Slight scale-up effect */
+}
+
+/* Notification Badge */
+.notification-badge {
+position: absolute;
+top: -8px; /* Adjusted to sit above the bell */
+right: -8px; /* Adjusted to sit to the right */
+background-color: #dc3545; /* Red background */
+color: #fff;
+font-size: 0.75rem;
+font-weight: 600;
+padding: 3px 7px;
+border-radius: 50%;
+min-width: 20px; /* Ensures circular shape */
+height: 20px;
+line-height: 14px; /* Centers text vertically */
+box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+/* Posts Section */
+.posts-section {
+padding: 60px 0;
+background: #f8f9fa;
+}
+
+.section-title {
+font-size: 2.5rem;
+font-weight: 700;
+color: #2c3e50;
+}
+
+.btn-new-post {
+padding: 10px 20px;
+font-weight: 500;
+border-radius: 25px;
+}
+
+.btn-new-post i {
+margin-right: 5px;
+}
+
+/* Filters */
+.filters-container {
+background: #fff;
+padding: 15px;
+border-radius: 10px;
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.form-control, .form-select {
+border-radius: 8px;
+}
+
+/* Blog Card */
+.blog-card {
+border: none;
+border-radius: 12px;
+background: #fff;
+overflow: hidden;
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-card:hover {
+transform: translateY(-8px);
+box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.blog-card-header {
+height: 100px;
+background: linear-gradient(135deg, #6c757d, #343a40);
+position: relative;
+}
+
+.category-badge {
+position: absolute;
+top: 10px;
+right: 10px;
+background: #007bff;
+color: #fff;
+padding: 5px 12px;
+border-radius: 20px;
+font-size: 0.85rem;
+}
+
+.blog-card-body {
+padding: 20px;
+}
+
+.blog-post-title {
+font-size: 1.5rem;
+font-weight: 600;
+margin-bottom: 10px;
+}
+
+.blog-post-title a {
+color: #2c3e50;
+cursor: pointer;
+}
+
+.blog-post-title a:hover {
+color: #007bff;
+}
+
+.blog-post-excerpt {
+font-size: 1rem;
+color: #6c757d;
+line-height: 1.5;
+}
+
+.blog-post-meta {
+margin-top: 10px;
+font-size: 0.9rem;
+color: #6c757d;
+}
+
+.blog-post-meta i {
+margin-right: 5px;
+}
+
+/* Footer */
+.blog-card-footer {
+padding: 15px 20px;
+border-top: 1px solid #e9ecef;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.vote-controls .vote-btn {
+padding: 5px 12px;
+border-radius: 20px;
+font-size: 0.9rem;
+}
+
+.upvote-btn {
+border: 1px solid #28a745;
+color: #28a745;
+}
+
+.upvote-btn.voted, .upvote-btn:hover {
+background: #28a745;
+color: #fff;
+}
+
+.downvote-btn {
+border: 1px solid #dc3545;
+color: #dc3545;
+}
+
+.downvote-btn.voted, .downvote-btn:hover {
+background: #dc3545;
+color: #fff;
+}
+
+.action-buttons .action-btn {
+padding: 6px;
+font-size: 0.9rem;
+border-radius: 5px;
+}
+
+/* No Posts */
+.no-posts {
+min-height: 50vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+
+/* Modal */
+.modal-content {
+border-radius: 12px;
+box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+border-bottom: 1px solid #e9ecef;
+}
+
+.modal-title {
+font-weight: 600;
+}
+
+.form-label {
+font-size: 0.95rem;
+}
+
+.form-control, .form-select {
+border-radius: 8px;
+box-shadow: none;
+}
+
+.btn-primary {
+border-radius: 8px;
+padding: 8px 20px;
+}
+
+/* Animations */
+.animate__animated {
+animation-duration: 0.5s;
+}
+
+.animate__fadeIn {
+animation-name: fadeIn;
+}
+
+/* Ensures that the image container doesn't break the layout */
+.post-image-container {
+width: 100%; /* Adjusts container width to be responsive */
+text-align: center; /* Centers the image inside the container */
+margin-bottom: 20px; /* Adds spacing below the image */
+}
+
+/* Standardizes the size of the images */
+.modern-post-img {
+width: 100%; /* Ensures the image takes up 100% of the container width */
+height: 250px; /* Fixes the height to a specific size */
+object-fit: cover; /* Ensures the image doesn't stretch and keeps its aspect ratio */
+border-radius: 10px; /* Optional: Adds rounded corners to the image */
+}
+
+/* Optional: Make sure images look good on larger screens */
+@media (min-width: 768px) {
+.modern-post-img {
+  height: 300px; /* Larger height for bigger screens */
+}
+}
+
+/* Optional: For small screens */
+@media (max-width: 576px) {
+.modern-post-img {
+  height: 200px; /* Smaller height for small screens */
+}
+}
+
+@keyframes fadeIn {
+from { opacity: 0; }
+to { opacity: 1; }
+}
+

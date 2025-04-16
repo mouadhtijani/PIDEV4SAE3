@@ -1,0 +1,55 @@
+.container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 400px;
+    width: 800px;
+    border: 1px solid black;
+    border-radius: 15px;
+  }
+
+  .codecontainer {
+    margin-left: 20%;
+    margin-top: 40px;
+    height: auto;
+    width: 400px;
+    display: flex; /* Use flexbox for layout */
+  }
+  
+ input {
+    border-radius: 12px;
+    width: 60px; /* Adjust width as needed */
+    height: 60px; /* Adjust height as needed */
+    text-align: center; /* Center text horizontally */
+    margin: 0 5px; /* Add spacing between inputs */
+    font-size: 18px; /* Adjust font size as needed */
+    border: 1px solid #ccc; /* Add borders for clarity */
+  }
+  .activate-message,.actvate-error{
+    text-align: center;
+  }
+  .actvate-error{
+    color: red;
+  }
+  .btn_ok {
+    background-color: aqua;
+    height: 40px;
+    width: 100px;
+  }
+  .btn{
+    height: 55px;
+    width: 120px;
+    background-color: lightskyblue;
+    border: none;
+    border-radius: 8px;
+
+  }
+  .btn_error{
+    height: 55px;
+    width: 120px;
+    background-color: red;
+    border: none;
+    border-radius: 8px;
+    
+  }

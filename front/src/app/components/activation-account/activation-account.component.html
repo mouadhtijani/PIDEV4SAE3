@@ -1,0 +1,36 @@
+<div class="container" *ngIf="submitted else codeForm "  >
+<div class="activate-message" *ngIf="isOkay else activationError" >
+    <h2>Activation Successfully</h2>
+    <p> Your account has been successfully activated .</p>
+    <button class="btn" (click)="goToNextRegister()">Continue</button>
+</div>
+<ng-template #activationError >
+    <div class="activate-error">
+        <h2>Activation Failed!</h2>
+        <p> {{message}} </p>
+        <button class="btn_error" (click)="submitted=false">Retry</button>
+    </div>
+</ng-template>
+</div>
+<ng-template #codeForm>
+    <div class="container" >
+        <div class="text-center">
+            <h2 style=" margin-top: 10%;">Type your Activation code</h2>
+          <div class="codecontainer ">
+            <input type="number" [(ngModel)]="firstValue" max="9"  min="0" maxlength="1"  >
+            <input type="number" [(ngModel)]="secondValue" max="9" min="0" maxlength="1">
+            <input type="number" [(ngModel)]="thirdValue" max="9" min="0" maxlength="1">
+            <input type="number" [(ngModel)]="fourthValue" max="9" min="0" maxlength="1">
+            <input type="number" [(ngModel)]="fifthValue" max="9" min="0" maxlength="1">
+            <input type="number" [(ngModel)]="sixValue" max="9" min="0" maxlength="1"  >
+            <br>
+
+
+          </div><br>
+          <button style="height: 50px;width: 120px; border: none; background-color: lightgreen; border-radius: 10px;
+          font-weight: bold;" (click)="confirmCode()" >Confirm</button>
+
+        </div>
+
+    </div>
+</ng-template>

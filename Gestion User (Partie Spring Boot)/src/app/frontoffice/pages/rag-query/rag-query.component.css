@@ -1,0 +1,64 @@
+.rag-query {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: transparent; /* Made transparent */
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  
+    h3 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 1rem;
+    }
+  
+    .input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      transition: border-color 0.3s;
+  
+      &:focus {
+        border-color: #3f51b5;
+        outline: none;
+      }
+    }
+  
+    button {
+      display: inline-block;
+      background-color: #3f51b5;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      width: 100%;
+  
+      &:hover {
+        background-color: #303f9f;
+      }
+    }
+  
+    div {
+      margin-top: 1rem;
+      font-size: 1rem;
+      color: #444;
+  
+      h4 {
+        margin-bottom: 0.5rem;
+        color: #222;
+      }
+  
+      p {
+        color: black; /* Answer color set to black */
+        white-space: pre-wrap;
+        line-height: 1.5;
+      }
+    }
+  }
+  

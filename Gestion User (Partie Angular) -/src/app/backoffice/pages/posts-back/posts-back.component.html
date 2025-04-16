@@ -1,0 +1,61 @@
+<div class="post-back-container">
+    <h2>Manage Posts</h2>
+  
+    <!-- Displaying existing posts -->
+    <div *ngIf="posts.length">
+      <h3>Existing Posts</h3>
+      <ul class="post-list">
+        <li *ngFor="let post of posts" class="post-item">
+          <span class="post-title">{{ post.name }} - {{ post.dateCreation }} - {{ post.categorie }}</span>
+          <div class="button-group">
+            <button class="btn edit-btn" (click)="getPost(post.id)">Edit</button>
+            <button class="btn delete-btn" (click)="deletePost(post.id)">Delete</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  
+    <!-- Form for creating or editing a post -->
+    <div *ngIf="isEditing" class="form-container">
+      <h3>Edit Post</h3>
+      <form (ngSubmit)="updatePost(postToEdit.id)">
+        <label for="name">Name</label>
+        <input id="name" [(ngModel)]="postToEdit.name" name="name" required />
+  
+        <label for="description">Description</label>
+        <textarea id="description" [(ngModel)]="postToEdit.description" name="description" required></textarea>
+  
+        <label for="categorie">Category</label>
+        <select id="categorie" [(ngModel)]="postToEdit.categorie" name="categorie" required>
+          <option *ngFor="let category of postCategories" [value]="category">{{ category }}</option>
+        </select>
+  
+        <div class="form-actions">
+          <button type="submit" class="btn update-btn">Update Post</button>
+          <button type="button" class="btn cancel-btn" (click)="cancelEdit()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  
+    <!-- Form for creating a new post -->
+    <div *ngIf="!isEditing" class="form-container">
+      <h3>Create a New Post</h3>
+      <form (ngSubmit)="createPost()">
+        <label for="newName">Name</label>
+        <input id="newName" [(ngModel)]="post.name" name="name" required />
+  
+        <label for="newDescription">Description</label>
+        <textarea id="newDescription" [(ngModel)]="post.description" name="description" required></textarea>
+  
+        <label for="newCategorie">Category</label>
+        <select id="newCategorie" [(ngModel)]="post.categorie" name="categorie" required>
+          <option *ngFor="let category of postCategories" [value]="category">{{ category }}</option>
+        </select>
+  
+        <div class="form-actions">
+          <button type="submit" class="btn create-btn">Create Post</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

@@ -1,39 +1,25 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RegisterComponent } from './components/register/register.component';
-import { LoginComponent } from './components/login/login.component';
-import { StudentRegisterComponent } from './components/student-register/student-register.component';
-import { CompanyRegisterComponent } from './components/company-register/company-register.component';
-import { ActivationAccountComponent } from './components/activation-account/activation-account.component';
-import { HomePageComponent } from './components/home-page/home-page.component';
+import { LandingpageComponent } from './frontoffice/pages/landingpage/landingpage.component';
+import { DashboardComponent } from './backoffice/pages/dashboard/dashboard.component';
+import { CommunityComponent } from './frontoffice/pages/community/community.component';
+import { PostsComponent } from './frontoffice/pages/posts/posts.component';
+import { CommunityBackComponent } from './backoffice/pages/community-back/community-back.component';
+import { PostsBackComponent } from './backoffice/pages/posts-back/posts-back.component';
+import { RepliesBackComponent } from './backoffice/pages/replies-back/replies-back.component';
 
-import { AuthGuard } from './auth.guard';
-import { TestHomeComponent } from './components/test-home/test-home.component';
-const routes: Routes = [
-  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
-  {  path: 'register', component: RegisterComponent},
-  { path: 'register/student', component: StudentRegisterComponent },
-  { path: 'register/company', component: CompanyRegisterComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'activate-account', component: ActivationAccountComponent },
-  { path: 'activate-company', component: ActivationAccountComponent },
-
-  { path: 'homepage', component: TestHomeComponent },
-  { path: 'login', component: LoginComponent },
-
-
-
-
-
-
-
-
-  { path: '', redirectTo: 'login', pathMatch: 'full' }, // Redirect to register by default
-  { path: '**', redirectTo: 'homepage' } // Wildcard route for handling 404
+const routes: Routes = [{ path: '', component: LandingpageComponent }, 
+  { path: 'admin', component: DashboardComponent },
+  { path: 'admin/community', component: CommunityBackComponent },
+  { path: 'admin/posts', component: PostsBackComponent },
+  { path: 'admin/replies', component: RepliesBackComponent },
+  { path: 'community', component: CommunityComponent },
+  { path: 'posts/:id', component: PostsComponent },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

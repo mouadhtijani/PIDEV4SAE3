@@ -43,16 +43,33 @@ public class SupervisorService {
             etudiant.setSupervisor(supervisor);
             Etudiant updatedEtudiant = etudiantrepository.save(etudiant); // Save the updated student
 
-            // Sending email to the student
-            String messageToStudent = "Bonjour " + etudiant.getNom() + ",\n\n" +
-                    "Vous avez été affecté au superviseur " + supervisor.getName() + ".\n" +
-                    "Veuillez contacter votre superviseur pour les prochaines étapes.";
-            emailService.sendEmail(etudiant.getEmail(), "Affectation à un superviseur", messageToStudent);
+            // Prepare the email message to the student
+            String messageToStudent = "Bonjour " + etudiant.getPrenom() + " " + etudiant.getNom() + ",\n\n" +
+                    "Nous avons le plaisir de vous informer que vous avez été affecté au superviseur " + supervisor.getName() + ".\n\n" +
+                    "Voici les informations relatives à votre affectation :\n" +
+                    "Superviseur : " + supervisor.getName() + "\n" +
+                    "Email du superviseur : " + supervisor.getEmail() + "\n\n" +
+                    "Veuillez contacter votre superviseur pour organiser les prochaines étapes et discuter des objectifs de votre projet.\n\n" +
+                    "Nous vous souhaitons une excellente collaboration et réussite dans vos travaux.\n\n" +
+                    "Cordialement,\n" +
+                    "L'équipe de gestion des affectations";
 
-            // Sending email to the supervisor
+            // Prepare the email message to the supervisor
             String messageToSupervisor = "Bonjour " + supervisor.getName() + ",\n\n" +
-                    "L'étudiant " + etudiant.getNom() + " (" + etudiant.getEmail() + ") vient d’être affecté à vous.";
-            emailService.sendEmail(supervisor.getEmail(), "Nouvel étudiant assigné", messageToSupervisor);
+                    "Nous vous informons que l'étudiant " + etudiant.getPrenom() + " " + etudiant.getNom() + " (" + etudiant.getEmail() + ") a été affecté à votre supervision.\n\n" +
+                    "Voici les informations relatives à l'étudiant :\n" +
+                    "Nom de l'étudiant : " + etudiant.getPrenom() + " " + etudiant.getNom() + "\n" +
+                    "Email de l'étudiant : " + etudiant.getEmail() + "\n" +
+                    "Filière : " + etudiant.getFiliere() + "\n" +
+                    "Année : " + etudiant.getAnnee() + "\n\n" +
+                    "Nous vous prions de bien vouloir entrer en contact avec l'étudiant pour définir les objectifs et les modalités de votre collaboration.\n\n" +
+                    "Nous vous remercions pour votre engagement et votre soutien à la réussite de nos étudiants.\n\n" +
+                    "Cordialement,\n" +
+                    "L'équipe de gestion des affectations";
+
+            // Send email to both the student and supervisor
+            emailService.sendEmail(new String[]{etudiant.getEmail()}, "Affectation à un superviseur", messageToStudent);
+            emailService.sendEmail(new String[]{supervisor.getEmail()}, "Nouvel étudiant assigné", messageToSupervisor);
 
             // Return the updated student
             return updatedEtudiant;
@@ -60,6 +77,8 @@ public class SupervisorService {
             throw new RuntimeException("Supervisor or Etudiant not found");
         }
     }
+
+
 
     // Get students supervised by a specific supervisor
     public List<Etudiant> getEtudiantsBySupervisor(Long supervisorId) {

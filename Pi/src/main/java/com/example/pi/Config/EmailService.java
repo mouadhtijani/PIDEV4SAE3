@@ -9,18 +9,18 @@ import org.springframework.stereotype.Service;
 public class EmailService {
 
     @Autowired
-    private JavaMailSender mailSender; // JavaMailSender for sending emails
+    private JavaMailSender mailSender;
 
     // Send an email
-    public void sendEmail(String to, String subject, String body) {
+    public void sendEmail(String[] to, String subject, String body) {
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("groupepi555@gmail.com"); // Replace with your email address
-        message.setTo(to); // Recipient email
-        message.setSubject(subject); // Email subject
-        message.setText(body); // Email body
+        message.setFrom("groupepi555@gmail.com");
+        message.setTo(to); // Array of recipients
+        message.setSubject(subject);
+        message.setText(body);
 
         try {
-            mailSender.send(message); // Send email
+            mailSender.send(message);  // Send email
             System.out.println("Email sent successfully!");
         } catch (Exception e) {
             System.out.println("Error sending email: " + e.getMessage());

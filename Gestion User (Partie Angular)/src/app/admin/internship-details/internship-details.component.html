@@ -1,0 +1,75 @@
+
+<div class="main">
+
+    <div class="left">
+        <img class="myimage" [src]="'data:image/png;base64,' + myInternship?.company?.company_logo">  <br>
+        <label class="companyname" >{{myInternship?.company?.companyName}}</label><br>
+        <label class="text" >Domaine :</label><label class="value" >{{ myInternship?.company?.domaine}}</label><br>
+        <label class="text">Supervisor :</label><label class="value">{{ myInternship?.supervisor?.firstName+" "+myInternship?.supervisor?.lastName }}</label><br>
+        <label class="text">Supervisor email :</label><label class="value">{{ myInternship?.supervisor?.email}}</label><br>
+
+        <label class="text">Company Tel :</label><label class="value">{{ myInternship?.company?.companyTelephone}}</label><br>
+
+        <label class="text">Company webSite :</label><label class="value" >{{ myInternship?.company?.webSite}}</label><br>
+        <label class="text">Company email :</label><label class="value">{{ myInternship?.company?.companyEmail}}</label><br>
+        
+    </div>
+    <div class="right">
+        <label class="text1">Post :</label><label class="value" style="font-weight: bold; font-size: 22px;" > {{ myInternship?.postName}} </label><br>
+        <label class="text1">Description :</label><p class="value">{{ myInternship?.postDescription}}</p><br>
+
+        <label class="text1">Type :</label><label class="value">{{ myInternship?.internshipType}}</label><br>
+
+        <label class="text1"> Status : </label><label class="value">   {{ myInternship?.internshipStatus}}</label><br>
+        <label class="text1">Period :</label><label class="value"> from {{ myInternship?.startDate |date:"dd//MM/yyyy"}} ==> {{myInternship?.endDate |date:"dd//MM/yyyy"}}</label><br>
+        <label class="text1">Post Capacity :</label><label class="value">{{ myInternship?.postCapacity}}</label><br>
+        <label class="text1">Toatl Application :</label><label class="value" style="margin-bottom: 15px;"> {{nbrApp}} </label> 
+      
+
+    </div>
+  </div>
+  <div class="test" style="margin-top: 30px;margin-bottom: 30px;" >
+    <button class="btn_all" (click)="loadAllApplication('all')">All</button>
+    <button class="btn_pending" (click)="loadAllApplication('pending')">Pending </button>
+    <button class="btn_accpted"(click)="loadAllApplication('accepted')">Accepted</button>
+    <button class="btn_refused"(click)="loadAllApplication('refused')">Refused</button>
+ 
+  </div>
+  <div class="bottom" >
+    <div class="bottom2" style="height: 500px;width: 100%; ;">
+        <div class="containerr">
+            <br>
+            <div class="oneStudentContainer"
+                *ngFor="let student of myCondidateList |paginate: { itemsPerPage: 3, currentPage: p }">
+                <div (dblclick)="goToStudentDetails(student.student?.userId)" class="card" [ngClass]="{'accepted': student.applicationStatus === 'ACCEPTED', 'refused': student.applicationStatus === 'REFUSED'}">
+                    <img class="img" (click)="openStudentCV(student.student?.studentCV)"
+                        [src]="'data:image/png;base64,' + student.student?.userImage"><br>
+                    <label class="name">{{student.student?.firstName + ' ' + student.student?.lastName}}<br></label>
+                    <div class="testtesttest">
+                        <label class="title">Level : </label><label class="value"> {{student.student?.studentLevel }}
+                        </label>
+                    </div>
+                    <div class="testtesttest">
+                        <label class="title">Classe : </label><label class="value"> {{student.student?.classeLevel}}
+                        </label>
+                    </div>
+    
+    
+                    <div class="testtesttest">
+                        <label class="title">Specialty : </label> <label class="value"> {{student.student?.specialty }}
+                        </label>
+                    </div>
+                    <br>
+                 
+    
+    
+    
+                </div>
+            </div>
+        </div>
+        <div class="pagination"> <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+        </div>
+    
+    </div>
+      </div>

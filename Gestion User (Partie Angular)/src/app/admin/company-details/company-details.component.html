@@ -1,0 +1,28 @@
+<div *ngIf="pending else displayAcceptedCompany "  >
+    <label > aaa{{myCompany.address}} </label><br>
+    <label >bbb{{myCompany.companyEmail}} </label><br>
+    <label >ccc {{myCompany.companyId}} </label><br>
+    <label > ddd{{myCompany.companyName}} </label><br>
+    <label >eee{{myCompany.companyPrintCode}} </label><br>
+    <label > fff{{myCompany.companyTelephone}} </label><br>
+    <label >gggg{{myCompany.webSite}} </label><br>
+    <label >hhhh{{myCompany.supervisor?.email}} </label><br>
+    <label >iiii {{myCompany.supervisor?.firstName}} </label> 
+    <button (click)="setCompanyStatus('Accepted')" >accept</button>
+    <button (click)="setCompanyStatus('refuse')" >refuse</button>
+
+
+</div>
+<ng-template #displayAcceptedCompany >
+    <div>
+        <label > aaa{{myCompany.address}} </label><br>
+        <label >bbb{{myCompany.companyEmail}} </label><br>
+        <label >ccc {{myCompany.companyId}} </label><br>
+        <label > ddd{{myCompany.companyName}} </label><br>
+        <label >eee{{myCompany.companyPrintCode}} </label><br>
+        <label > fff{{myCompany.companyTelephone}} </label><br>
+        <label >gggg{{myCompany.webSite}} </label><br>
+        <label >hhhh{{myCompany.supervisor?.email}} </label><br>
+        <label >iiii {{myCompany.supervisor?.firstName}} </label>    </div>
+</ng-template>
+

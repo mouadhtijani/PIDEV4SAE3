@@ -1,0 +1,46 @@
+.stats .divA {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 2s ease-out, transform 2s ease-out;
+  }
+  
+  .stats .divA.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .stats {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #82bff8;
+    height: 400px;
+    /* Allow items to wrap to the next line */
+    justify-content: space-around;
+    padding: 20px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-top: 50px;
+  }
+  .divA {
+    height: 300px;
+    width: 150px;
+    margin: 20px;
+    background-color: transparent;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .value {margin-top: 10px;
+    font-size: 42px;
+    color:whitesmoke;
+  }
+  
+  .title {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: whitesmoke;
+    font-style: italic;
+  }
+  

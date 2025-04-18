@@ -1,0 +1,153 @@
+.main {
+    display: flex;
+    padding: 0;
+}
+
+.image, .form {
+    height: 100vh;
+    width: 50%;
+    margin: 0;
+    max-height: max-content;
+}
+
+.card{
+    margin-top: 70px;
+    border-radius: 25px;
+    margin-left: 13%;
+    height: 520px;
+    width: 500px;
+    opacity: 0.5;
+    background: black;
+    border: 1px solid black;
+
+}
+
+.myimage{
+    margin: 0px;
+    height: 100%;
+    width: 100%;
+}
+.studentclasscard {
+    margin-top: 30px;
+    margin-left: 50px;
+    display: flex;
+    align-items: center;
+    height: 120px;
+    width: 400px;
+    margin-bottom: 10px;
+
+}
+
+
+.level{
+ height: 100%;
+ width: 33%;
+}
+
+.classe{
+    height: 100%;
+    width: 34%;
+   }
+   
+.speciality{
+    height: 100%;
+    width: 33%;
+   }
+   .btn_finish{
+    color: aliceblue;
+    margin-left: 70px;
+    height: 55px;
+    width: 360px;
+    padding-left: 10px;
+    border-radius: 35px;
+    border: none;
+    background-color: rgb(87, 87, 100);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.speciality-select {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    margin: 20px;
+  }
+  
+  .speciality-select label {
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: aliceblue;
+
+  }
+  
+ select {
+    background-color: grey;
+    width: 80%;
+    margin-left: 5px;
+    height: 35px;
+    padding: 4px;
+    color: aliceblue;
+    font-size: 16px;
+    
+  }
+  label{
+    font-size: 16px;
+    margin-left: 5px;
+    margin-top: 10px;
+    color: aliceblue;
+
+  }
+  .title{
+    color: aliceblue;
+    margin-top: 75px;
+    margin-left: 80px;
+    font-style: normal;
+
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+.birthdate{
+    background-color: transparent;
+    margin-left: 55px;
+    height: 52px;
+    width: 120px;
+    padding-left: 10px;
+    color: aliceblue;
+    border-radius: 5px;
+    border: 1px solid rgb(209, 219, 219);
+}
+
+.is-invalid {
+    border: 2px solid #ff3860 !important;
+  }
+  
+  .error-message {
+    color: #ff3860;
+    font-size: 12px;
+    margin-left: 50px;
+    margin-top: 5px;
+  }
+  
+  select.is-invalid {
+    border-color: #ff3860 !important;
+  }
+  
+button:hover {
+    animation: bubble 0.4s ease-out;
+}
+
+@keyframes bubble {
+    0% {
+        transform: scale(1);
+        background: linear-gradient(90deg, #5795e6, #0ea2f1);
+    }
+    50% {
+        transform: scale(1.2);
+        background: linear-gradient(90deg, #5795e6, #0ea2f1);
+    }
+    100% {
+        transform: scale(1);
+        background: linear-gradient(90deg, #5795e6, #0ea2f1);
+    }
+}

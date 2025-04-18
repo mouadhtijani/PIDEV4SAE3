@@ -1,0 +1,120 @@
+<div class="main">
+  <div class="image">
+      <img class="myimage" src="../assets/images/company.png">  
+  </div>
+  <div class="form">
+    <div class="card">
+      <br>
+      <h4 class="info">Enter details to create your Entreprise</h4>
+      <br>
+      
+      <form #companyForm="ngForm" (ngSubmit)="save()">
+        <!-- Company Name -->
+        <input type="text" 
+               class="companyname" 
+               placeholder="Company Name"  
+               [(ngModel)]="companyName"
+               name="companyName"
+               required
+               #companyNameField="ngModel"
+               [ngClass]="{ 'is-invalid': (companyNameField.touched || submitted) && companyNameField.invalid }">
+        <div *ngIf="(companyNameField.touched || submitted) && companyNameField.invalid" class="error-message">
+          Company name is required
+        </div>
+
+        <div class="testtest">
+          <!-- Domaine -->
+          <select class="domaine" 
+                  [(ngModel)]="companyDomaine" 
+                  name="domaine"
+                  required
+                  #domaineField="ngModel"
+                  [ngClass]="{ 'is-invalid': (domaineField.touched || submitted) && domaineField.invalid }">
+            <option value="" disabled selected>Select Domaine</option>
+            <option *ngFor="let domaine of domaines" [value]="domaine">
+              {{domaine}}
+            </option>
+          </select>
+          
+          <!-- Telephone -->
+          <input type="tel" 
+                 class="telephone" 
+                 placeholder="00000000" 
+                 [(ngModel)]="companyTelephone"
+                 name="telephone"
+                 required
+                 pattern="[0-9]{8}"
+                 #telephoneField="ngModel"
+                 [ngClass]="{ 'is-invalid': (telephoneField.touched || submitted) && telephoneField.invalid }">
+        </div>
+        <div class="error-container">
+          <div *ngIf="(domaineField.touched || submitted) && domaineField.invalid" class="error-message">
+            Domaine is required
+          </div>
+          <div *ngIf="(telephoneField.touched || submitted) && telephoneField.invalid" class="error-message">
+            Valid 8-digit phone number required
+          </div>
+        </div>
+
+        <div class="testtest">
+          <!-- Email -->
+          <input type="email" 
+                 class="input_email" 
+                 placeholder="addressEmail@gmail.com" 
+                 [(ngModel)]="companyEmail"
+                 name="email"
+                 required
+                 #emailField="ngModel"
+                 [ngClass]="{ 'is-invalid': (emailField.touched || submitted) && emailField.invalid }">
+          
+          <!-- Website -->
+          <input type="text" 
+                 class="website" 
+                 placeholder="www.companyWebSite.tn" 
+                 [(ngModel)]="companyWebSite"
+                 name="website"
+                 #websiteField="ngModel">
+        </div>
+        <div *ngIf="(emailField.touched || submitted) && emailField.invalid" class="error-message">
+          Valid email is required
+        </div>
+
+        <div class="testtest">
+          <!-- Zip Code -->
+          <input type="number"   
+                 class="zipcode" 
+                 placeholder="Zip code" 
+                 [(ngModel)]="zipCode"
+                 name="zipCode"
+                 required
+                 #zipCodeField="ngModel"
+                 [ngClass]="{ 'is-invalid': (zipCodeField.touched || submitted) && zipCodeField.invalid }">
+          
+          <!-- Logo (sans validation) -->
+          <input type="file" 
+                 style="margin-left: 15px;" 
+                 (change)="onFileSelected($event)">
+        </div>
+        <div *ngIf="(zipCodeField.touched || submitted) && zipCodeField.invalid" class="error-message">
+          Zip code is required
+        </div>
+
+        <!-- Address -->
+        <input type="text"   
+               class="address" 
+               placeholder="address" 
+               [(ngModel)]="companyadress"
+               name="address"
+               required
+               #addressField="ngModel"
+               [ngClass]="{ 'is-invalid': (addressField.touched || submitted) && addressField.invalid }">
+        <div *ngIf="(addressField.touched || submitted) && addressField.invalid" class="error-message">
+          Address is required
+        </div>
+
+        <h4 class="btn_back" routerLink="login">Back</h4> 
+        <button class="btn_finish" type="submit">Finish</button>
+      </form>
+    </div>
+  </div>
+</div>

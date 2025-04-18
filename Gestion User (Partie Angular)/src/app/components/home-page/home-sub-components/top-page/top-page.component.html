@@ -1,0 +1,66 @@
+<div class="first_div">
+
+    <div class="background">
+
+      <label class="overlay-label">We have more than {{totalInternship}} opportunities for you </label> <label
+        *ngIf="isNotConnected" class="btn-join" routerLink="/login"> , Join Now</label>
+      <h1> Largest Internship Site In Tunisia</h1>
+      <button class="btn-opportunity">Find Opportunitiy</button> <button class="btn-candidate">Find Candidate</button>
+
+      <div class="filter">
+        <input class="search" type="text" [(ngModel)]="search_text" placeholder="Find Internship ...">
+        <select class="selectType" (change)="onInternshipTypeChange($event)">
+          <option value="" disabled selected> Type</option>
+          <option *ngFor="let type of internshipTypes" [value]="type">
+            {{ type }}
+          </option>
+        </select>
+        <select (change)="onCompanyNameChange($event)">
+          <option value="" disabled selected> Company Name</option>
+          <option *ngFor="let name of companyNames" [value]="name">
+            {{ name }}
+          </option>
+        </select>
+        <input type="date" [(ngModel)]="start_date" (change)="onDateChange($event)">
+        <button class="btn_recent" (click)="getRecentsInternship()">Recents</button>
+      </div>
+
+    </div>
+    <div class="imgbg">
+      <img src="../assets/images/bgbg.jpg">
+
+    </div>
+
+
+  </div>
+  <div class="secondDiv">
+
+    <div class="internshipcontainer">
+      <div class="container">
+        <div class="card"
+          *ngFor="let internship of internshipList |filter:search_text |paginate: { itemsPerPage: 3, currentPage: p }    "
+          [routerLink]="'/homepage/details/' + internship.internshipId ">
+          <br> <label class="test"> Post : </label> <label class="postName"> {{internship.postName}} </label>
+          <label class="test"> Available place : </label> <label class="postCapacity"> {{internship.postCapacity}}
+          </label>
+          <label class="test"> Type : </label><label class="internshipType">{{internship.internshipType}}</label>
+          <label class="test"> Start : </label> <label class="startDate">{{internship.startDate
+            |date:"yyyy-MM-dd"}}</label>
+          <label class="test"> End : </label> <label class="endDate">{{internship.endDate |date:"yyyy-MM-dd"}}</label>
+          <label class="test"> Created At : </label> <label class="creationDate">{{internship.creationDate
+            |date:"yyyy-MM-dd"}}</label>
+          <br>
+          <label class="myvarstatus"
+            [style.color]="internship.internshipStatus === 'OPEN' ? 'lightskyblue'  : 'antiquewhite'">{{internship.internshipStatus}}</label>
+          <br>
+        </div>
+
+
+      </div>
+      <br>
+      <div class="pagination justify-content-center"> <pagination-controls
+          (pageChange)="p = $event"></pagination-controls>
+
+      </div>
+    </div>
+  </div>

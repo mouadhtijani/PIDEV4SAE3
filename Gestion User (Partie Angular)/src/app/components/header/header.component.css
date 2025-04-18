@@ -1,0 +1,105 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #82bff8;
+  color: white;
+  z-index: 1000;
+  transition: opacity 0.3s;
+  height: 75px;
+}
+
+.btn.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.btn-AddInternship.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.role-message {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 5px;
+}
+
+.navbar.scrolled {
+  opacity: 0.5;
+}
+
+.navbar-brand a {
+  color: rgb(110, 110, 235);
+  text-decoration: none;
+  font-size: 25px;
+  margin-left: 40px;
+}
+
+.navbar-buttons {
+  margin-left: 140px;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-buttons {
+  position: relative;
+}
+
+.navbar-buttons .btn {
+  color: white;
+  font-size: 20px;
+  border: none;
+  padding: 10px 20px;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.navbar-buttons .btn:hover {
+  color: #102b55;
+}
+
+.btn-AddInternship {
+  margin-left: 90px;
+  height: 50px;
+  width: 150px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(213, 247, 213);
+  background: linear-gradient(to right, rgb(213, 247, 213) 50%, rgb(79, 226, 21) 50%);
+  background-size: 200% 100%;
+  background-position: left bottom;
+  transition: background-position 0.5s ease;
+}
+
+.btn-AddInternship:hover {
+  background-position: right bottom;
+}
+
+/* Nouveau style pour le bouton Logout */
+.btn-logout {
+  margin-left: 20px;
+  padding: 10px 25px;
+  background-color: #ff4444;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.btn-logout:hover {
+  background-color: #cc0000;
+  transform: scale(1.05);
+}

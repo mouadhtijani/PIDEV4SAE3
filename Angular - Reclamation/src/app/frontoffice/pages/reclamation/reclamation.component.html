@@ -1,0 +1,52 @@
+<div class="container mt-5">
+  <h2 class="mb-4">Nouvelle Réclamation</h2>
+  <form (ngSubmit)="onSubmit()" class="mb-5">
+    <div class="mb-3">
+      <input type="text" class="form-control" [(ngModel)]="newReclamation.title" 
+             name="title" placeholder="Titre" required>
+    </div>
+
+    <div class="mb-3">
+      <select class="form-select" [(ngModel)]="newReclamation.userType" name="userType" required>
+        <option value="STUDENT">Étudiant</option>
+        <option value="COMPANY">Entreprise</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <textarea class="form-control" [(ngModel)]="newReclamation.description" 
+                name="description" rows="4" required></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Soumettre</button>
+  </form>
+
+  <h3 class="mb-4">Mes Réclamations</h3>
+  <div *ngFor="let rec of reclamations" class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">{{ rec.title }}</h5>
+      <p class="card-text">{{ rec.description }}</p>
+
+      <div class="metadata mb-2">
+        <span class="badge bg-secondary">
+          {{ rec.userType === 'STUDENT' ? 'Étudiant' : 'Entreprise' }}
+        </span>
+        <small class="text-muted ms-3">
+          Créé le: {{ rec.createdAt | date: 'medium' }}
+        </small>
+      </div>
+
+      <span class="badge" [ngClass]="{
+        'bg-warning': rec.status === 'PENDING',
+        'bg-info': rec.status === 'IN_PROGRESS',
+        'bg-success': rec.status === 'RESOLVED'
+      }">
+        {{ rec.status }}
+      </span>
+
+      <div *ngIf="rec.adminResponse" class="mt-2 alert alert-info">
+        <strong>Réponse :</strong> {{ rec.adminResponse }}
+      </div>
+    </div>
+  </div>
+</div>

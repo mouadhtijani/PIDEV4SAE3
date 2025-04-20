@@ -1,0 +1,15 @@
+.metadata {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 1rem;
+  }
+  
+  .badge.bg-info {
+    background-color: #0dcaf0!important;
+  }
+  
+  .text-muted {
+    color: #6c757d!important;
+  }
+  

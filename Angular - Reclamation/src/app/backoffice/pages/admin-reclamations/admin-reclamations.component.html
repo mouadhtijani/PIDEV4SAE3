@@ -1,0 +1,42 @@
+<div class="container mt-5">
+  <h2 class="mb-4">Gestion des Réclamations</h2>
+
+  <div *ngFor="let rec of reclamations" class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">{{ rec.title }}</h5>
+      <p class="card-text">{{ rec.description }}</p>
+
+      <!-- Infos supplémentaires : type utilisateur + date -->
+      <div class="mb-2 d-flex align-items-center gap-3">
+        <span class="badge bg-secondary">
+          {{ rec.userType === 'STUDENT' ? 'Étudiant' : 'Entreprise' }}
+        </span>
+        <small class="text-muted">
+          Créé le: {{ rec.createdAt | date:'medium' }}
+        </small>
+      </div>
+
+      <div class="mb-3">
+        <textarea 
+          class="form-control" 
+          [(ngModel)]="rec.adminResponse" 
+          placeholder="Réponse administrative"
+        ></textarea>
+      </div>
+
+      <button 
+        class="btn btn-success" 
+        (click)="updateResponse(rec.id, rec.adminResponse)">
+        <i class="bi bi-save"></i> Enregistrer
+      </button>
+
+      <span class="badge ms-2" [ngClass]="{
+        'bg-success': rec.status === 'RESOLVED',
+        'bg-info': rec.status === 'IN_PROGRESS',
+        'bg-warning': rec.status === 'PENDING'
+      }">
+        {{ rec.status }}
+      </span>
+    </div>
+  </div>
+</div>

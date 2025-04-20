@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ReclamationService } from '../../../services/reclamation.service';
+import { HistoryService } from 'src/app/services/history.service';
+import { HistoryEntry } from 'src/app/models/history-entry.model';
 
 @Component({
   selector: 'app-admin-reclamations',
@@ -8,19 +10,28 @@ import { ReclamationService } from '../../../services/reclamation.service';
 })
 export class AdminReclamationsComponent implements OnInit {
   reclamations: any[] = [];
+  history: HistoryEntry[] = [];
 
-  constructor(private reclamationService: ReclamationService) { }
+  constructor(
+    private reclamationService: ReclamationService,
+    private historyService: HistoryService
+  ) {}
 
   ngOnInit(): void {
     this.loadReclamations();
+    this.loadHistory();
+  }
+
+  loadHistory() {
+    this.historyService.getHistory().subscribe({
+      next: (data) => this.history = data,
+      error: (err) => console.error(err)
+    });
   }
 
   updateResponse(id: number, response: string) {
     this.reclamationService.updateAdminResponse(id, response).subscribe({
-      next: () => {
-        // Recharger les données après mise à jour
-        this.loadReclamations();
-      },
+      next: () => this.loadReclamations(),
       error: (err) => console.error(err)
     });
   }
@@ -28,7 +39,6 @@ export class AdminReclamationsComponent implements OnInit {
   private loadReclamations() {
     this.reclamationService.getAdminReclamations().subscribe({
       next: (data: any) => {
-        // Filtrer les réclamations non résolues
         this.reclamations = data.filter((rec: any) => rec.status !== 'RESOLVED');
       },
       error: (err) => console.error(err)

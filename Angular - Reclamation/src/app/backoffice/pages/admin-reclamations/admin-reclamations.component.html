@@ -6,7 +6,6 @@
       <h5 class="card-title">{{ rec.title }}</h5>
       <p class="card-text">{{ rec.description }}</p>
 
-      <!-- Infos supplémentaires : type utilisateur + date -->
       <div class="mb-2 d-flex align-items-center gap-3">
         <span class="badge bg-secondary">
           {{ rec.userType === 'STUDENT' ? 'Étudiant' : 'Entreprise' }}
@@ -38,5 +37,34 @@
         {{ rec.status }}
       </span>
     </div>
+  </div>
+
+  <!-- ✅ SECTION HISTORIQUE -->
+  <div class="mt-5">
+    <h3>Historique des actions</h3>
+
+    <table class="table table-striped table-bordered mt-3">
+      <thead class="table-dark">
+        <tr>
+          <th>Action</th>
+          <th>Date</th>
+          <th>Réclamation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let entry of history">
+          <td>
+            <span class="badge" [ngClass]="{
+              'bg-success': entry.actionType === 'CREATION',
+              'bg-info': entry.actionType === 'RESPONSE'
+            }">
+              {{ entry.actionType }}
+            </span>
+          </td>
+          <td>{{ entry.timestamp | date:'medium' }}</td>
+          <td>#{{ entry.reclamation.id }} - {{ entry.reclamation.title }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>

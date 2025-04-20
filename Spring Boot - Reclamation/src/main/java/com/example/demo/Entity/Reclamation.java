@@ -5,6 +5,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Reclamation {
@@ -31,6 +33,10 @@ public class Reclamation {
 
     @Enumerated(EnumType.STRING)
     private UserType userType;
+
+
+    @OneToMany(mappedBy = "reclamation", cascade = CascadeType.ALL)
+    private List<HistoryEntry> historyEntries = new ArrayList<>();
 
     // Getters
     public Long getId() { return id; }

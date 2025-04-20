@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -19,6 +20,14 @@ public class UserReclamationController {
     @PostMapping
     public Reclamation createReclamation(@RequestBody Reclamation reclamation) {
         return service.createReclamation(reclamation);
+    }
+
+    @PutMapping("/{id}/response")
+    public Reclamation updateResponse(
+            @PathVariable Long id,
+            @RequestBody Map<String, String> request) {
+        String adminResponse = request.get("response");
+        return service.updateAdminResponse(id, adminResponse);
     }
 
     @GetMapping("/{userId}")

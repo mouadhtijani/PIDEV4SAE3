@@ -25,7 +25,7 @@ public class AdminReclamationController {
     @PutMapping("/{id}/response")
     public Reclamation updateResponse(
             @PathVariable Long id,
-            @RequestBody    Map<String, String> request) { // Utiliser une Map ou DTO
+            @RequestBody Map<String, String> request) {
 
         String adminResponse = request.get("response");
         return service.updateAdminResponse(id, adminResponse);

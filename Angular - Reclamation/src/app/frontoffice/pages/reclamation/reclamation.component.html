@@ -23,29 +23,36 @@
 
   <h3 class="mb-4">Mes Réclamations</h3>
   <div *ngFor="let rec of reclamations" class="card mb-3">
-    <div class="card-body">
-      <h5 class="card-title">{{ rec.title }}</h5>
-      <p class="card-text">{{ rec.description }}</p>
+    <div class="card-body d-flex justify-content-between">
+      <div class="left-content">
+        <h5 class="card-title">{{ rec.title }}</h5>
+        <p class="card-text">{{ rec.description }}</p>
 
-      <div class="metadata mb-2">
-        <span class="badge bg-secondary">
-          {{ rec.userType === 'STUDENT' ? 'Étudiant' : 'Entreprise' }}
+        <div class="metadata mb-2">
+          <span class="badge bg-secondary">
+            {{ rec.userType === 'STUDENT' ? 'Étudiant' : 'Entreprise' }}
+          </span>
+          <small class="text-muted ms-3">
+            Créé le: {{ rec.createdAt | date: 'medium' }}
+          </small>
+        </div>
+
+        <span class="badge" [ngClass]="{
+          'bg-warning': rec.status === 'PENDING',
+          'bg-info': rec.status === 'IN_PROGRESS',
+          'bg-success': rec.status === 'RESOLVED'
+        }">
+          {{ rec.status }}
         </span>
-        <small class="text-muted ms-3">
-          Créé le: {{ rec.createdAt | date: 'medium' }}
-        </small>
+
+        <div *ngIf="rec.adminResponse" class="mt-2 alert alert-info">
+          <strong>Réponse :</strong> {{ rec.adminResponse }}
+        </div>
       </div>
 
-      <span class="badge" [ngClass]="{
-        'bg-warning': rec.status === 'PENDING',
-        'bg-info': rec.status === 'IN_PROGRESS',
-        'bg-success': rec.status === 'RESOLVED'
-      }">
-        {{ rec.status }}
-      </span>
-
-      <div *ngIf="rec.adminResponse" class="mt-2 alert alert-info">
-        <strong>Réponse :</strong> {{ rec.adminResponse }}
+      <!-- QR Code displayed on the right side -->
+      <div *ngIf="qrCodeUrl" class="qr-code mt-3">
+        <img [src]="qrCodeUrl" alt="QR Code" class="img-fluid" />
       </div>
     </div>
   </div>

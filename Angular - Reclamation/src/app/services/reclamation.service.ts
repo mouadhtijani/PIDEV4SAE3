@@ -1,13 +1,7 @@
-// src/app/services/reclamation.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment'; // Chemin relatif corrigé
-
-
-
-
-
-
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +21,11 @@ export class ReclamationService {
 
   getAdminReclamations() {
     return this.http.get(`${this.apiUrl}/admin/reclamations`);
+  }
+
+  // Nouvelle méthode pour récupérer le QR Code
+  getQRCode(reclamationId: string): Observable<Blob> {
+    return this.http.get(`${this.apiUrl}/user/reclamations/qr/${reclamationId}`, { responseType: 'blob' });
   }
 
   updateAdminResponse(id: number, response: string) {

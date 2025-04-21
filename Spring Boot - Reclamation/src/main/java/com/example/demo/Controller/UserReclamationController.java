@@ -1,11 +1,14 @@
-// src/main/java/com/example/demo/Controller/UserReclamationController.java
 package com.example.demo.Controller;
 
 import com.example.demo.Entity.Reclamation;
 import com.example.demo.Service.ReclamationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.MediaType;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -33,5 +36,21 @@ public class UserReclamationController {
     @GetMapping("/{userId}")
     public List<Reclamation> getByUser(@PathVariable String userId) {
         return service.getUserReclamations(userId);
+    }
+
+    // Ajout de l'endpoint pour récupérer le QR code
+    @GetMapping("/qr/{reclamationId}")
+    public ResponseEntity<ByteArrayResource> getQRCode(@PathVariable String reclamationId) throws IOException {
+        byte[] qrCodeData = service.getQRCodeData(reclamationId);
+
+        if (qrCodeData == null) {
+            return ResponseEntity.notFound().build(); // QR code does not exist
+        }
+
+        ByteArrayResource resource = new ByteArrayResource(qrCodeData);
+
+        return ResponseEntity.ok()
+                .contentType(MediaType.IMAGE_PNG)
+                .body(resource);
     }
 }

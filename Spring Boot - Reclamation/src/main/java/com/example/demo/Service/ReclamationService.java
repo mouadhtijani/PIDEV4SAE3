@@ -9,6 +9,9 @@ import com.example.demo.Entity.ReclamationStatus;
 import com.example.demo.Repository.HistoryRepository;
 import com.example.demo.Repository.ReclamationRepository;
 import com.example.demo.Entity.ActionType;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -125,4 +128,38 @@ public class ReclamationService {
 
         return image;
     }
+
+
+    public byte[] exportHistoryToExcel() throws IOException {
+        // Retrieve all history entries from the database
+        List<HistoryEntry> historyEntries = historyRepository.findAllByOrderByTimestampDesc();
+
+        // Create a new workbook
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        Sheet sheet = workbook.createSheet("History");
+
+        // Create header row
+        Row headerRow = sheet.createRow(0);
+        headerRow.createCell(0).setCellValue("Action");
+        headerRow.createCell(1).setCellValue("Date");
+        headerRow.createCell(2).setCellValue("Reclamation");
+
+        // Populate the rows with data from the history entries
+        int rowNum = 1;
+        for (HistoryEntry history : historyEntries) {
+            Row row = sheet.createRow(rowNum++);
+            row.createCell(0).setCellValue(history.getActionType().name());
+            row.createCell(1).setCellValue(history.getTimestamp().toString());
+            row.createCell(2).setCellValue("#" + history.getReclamation().getId() + " - " + history.getReclamation().getTitle());
+        }
+
+        // Write the Excel data to a byte array output stream
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        workbook.write(byteArrayOutputStream);
+        workbook.close();
+
+        return byteArrayOutputStream.toByteArray(); // Return the byte array containing the Excel file data
+    }
+
+
 }

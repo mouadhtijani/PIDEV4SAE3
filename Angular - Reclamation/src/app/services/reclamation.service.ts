@@ -33,4 +33,8 @@ export class ReclamationService {
       { response: response } // Envoyer comme objet JSON
     );
   }
+
+  getHistory(): Observable<any[]> {
+    return this.http.get<any[]>(`${environment.apiUrl}/api/history`); // Assuming the API is at this URL
+  }
 }
